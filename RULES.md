@@ -162,6 +162,42 @@ Teks yang bagus tidak butuh emoji sebagai penopang.
 
 ---
 
+## 12. Register bahasa: bukan baku, bukan gaul dipaksakan
+
+Jangan pakai bahasa baku yang kaku:
+> "Pada suatu kesempatan, kami memutuskan untuk mengunjungi kota Bandung bersama-sama."
+
+Tapi juga jangan paksain bahasa gaul yang terasa dibuat-buat:
+> "Btw gue sama lu tuh literally udah kemana-mana banget sih bestie."
+
+Yang diinginkan adalah bahasa Indonesia yang natural — seperti cara orang bercerita ke teman dekat,
+bukan ke dosen, tapi juga bukan ke followers TikTok.
+
+---
+
+## 13. Satu paragraf sudah cukup
+
+Deskripsi memori tidak harus panjang. Satu paragraf yang jujur lebih kuat dari tiga paragraf
+yang diperpanjang supaya terlihat berisi.
+
+Kalau sudah tersampaikan, berhenti. Tidak perlu ditutup dengan kalimat kesimpulan.
+Tidak perlu ada "penutup yang puitis". Biarkan berhenti di tempat yang terasa pas.
+
+---
+
+## 14. Jangan terpola — setiap memori punya caranya sendiri
+
+Bukan semua cerita harus dimulai dengan latar waktu. Bukan semua harus diakhiri dengan perasaan.
+Bukan semua harus punya arc yang jelas.
+
+Beberapa memori mungkin cuma satu momen kecil yang tidak perlu dijelaskan panjang-panjang.
+Beberapa mungkin perlu sedikit lebih banyak konteks. Ikuti ceritanya, bukan templatenya.
+
+Kalau teks memori yang satu terasa mirip strukturnya dengan memori yang lain,
+itu tanda bahwa salah satunya perlu ditulis ulang.
+
+---
+
 ## Checklist Sebelum Finalisasi Teks
 
 - [ ] Tidak ada em dash (—)

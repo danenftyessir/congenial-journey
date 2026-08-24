@@ -6,7 +6,6 @@ import ProfileSelect from './pages/ProfileSelect';
 import Home from './pages/Home';
 import MemoryDetail from './pages/MemoryDetail';
 import MyMemoriesPage from './pages/MyMemoriesPage';
-import FinaleScreen from './pages/FinaleScreen';
 
 function AppRoutes() {
   const { currentProfile } = useApp();
@@ -25,10 +24,6 @@ function AppRoutes() {
       <Route
         path="/my-memories"
         element={currentProfile ? <MyMemoriesPage /> : <Navigate to="/profile" replace />}
-      />
-      <Route
-        path="/finale"
-        element={currentProfile ? <FinaleScreen /> : <Navigate to="/profile" replace />}
       />
       <Route
         path="*"
