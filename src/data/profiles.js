@@ -1,9 +1,27 @@
 export const profiles = [
   {
-    id: 'danendra',
-    name: 'Danendra',
+    id: 'denan',
+    name: 'Denan',
     color: '#e50914',
     greeting: 'Your Memories',
+  },
+  {
+    id: 'zefanya',
+    name: 'Zefanya',
+    color: '#3b82f6',
+    greeting: 'Because Zefanya was there',
+  },
+  {
+    id: 'angel',
+    name: 'Angel',
+    color: '#ec4899',
+    greeting: 'Because Angel was there',
+  },
+  {
+    id: 'dinda',
+    name: 'Dinda',
+    color: '#8b5cf6',
+    greeting: 'Because Dinda was there',
   },
   {
     id: 'grace',
@@ -12,15 +30,18 @@ export const profiles = [
     greeting: 'Because Grace was there',
   },
   {
-    id: 'friend1',
-    name: 'Teman',
+    id: 'abi',
+    name: 'Abi',
     color: '#10b981',
-    greeting: 'A Familiar Face',
+    greeting: 'Because Abi was there',
   },
 ];
 
 export const people = {
-  danendra: { id: 'danendra', name: 'Danendra' },
+  denan: { id: 'denan', name: 'Denan' },
+  zefanya: { id: 'zefanya', name: 'Zefanya' },
+  angel: { id: 'angel', name: 'Angel' },
+  dinda: { id: 'dinda', name: 'Dinda' },
   grace: { id: 'grace', name: 'Grace' },
-  friend1: { id: 'friend1', name: 'Teman' },
+  abi: { id: 'abi', name: 'Abi' },
 };

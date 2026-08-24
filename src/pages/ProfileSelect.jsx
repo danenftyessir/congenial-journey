@@ -44,7 +44,7 @@ const ProfileSelect = () => {
           Siapa yang menonton?
         </h1>
 
-        <div className="flex flex-wrap items-center justify-center gap-5 lg:gap-8">
+        <div className="grid grid-cols-3 lg:grid-cols-6 gap-5 lg:gap-8">
           {profiles.map((profile) => (
             <button
               key={profile.id}
@@ -55,7 +55,7 @@ const ProfileSelect = () => {
             >
               {/* Avatar — Netflix face icon style */}
               <div
-                className="w-28 h-28 lg:w-36 lg:h-36 rounded-md flex items-center justify-center border-[3px] border-transparent group-hover:border-white transition-all duration-200 p-5 lg:p-6"
+                className="w-24 h-24 lg:w-32 lg:h-32 rounded-md flex items-center justify-center border-[3px] border-transparent group-hover:border-white transition-all duration-200 p-4 lg:p-5"
                 style={{ backgroundColor: profile.color }}
               >
                 <NetflixFaceIcon />

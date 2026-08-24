@@ -1266,7 +1266,7 @@ Track what is built vs. not built. Update this section after every work session.
 | Screen | Status | Notes |
 |--------|--------|-------|
 | Landing / Splash | ✗ Not built | App opens directly to Profile Select |
-| Profile Selection | ✓ Done | `/profile` — 3 profiles, avatar with color, localStorage persist |
+| Profile Selection | ✓ Done | `/profile` — 6 profiles (Denan, Zefanya, Angel, Dinda, Grace, Abi), avatar with color, localStorage persist |
 | Home Page | ✓ Done | `/home` — Hero + 10 dynamic rows incl. Phase 2 personalized rows |
 | Memory Detail Page | ✓ Done | `/memory/:id` — full dynamic detail, seasons, episodes, related, reactions |
 | Media Viewer / Player | ✓ Done | Fullscreen overlay — photo slideshow + video, keyboard nav, thumbnails |
