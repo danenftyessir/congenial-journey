@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { BookMarked } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { memories } from '../data/memories';
+import { publicMemories as memories } from '../data/memories';
 import { useApp } from '../context/AppContext';
 
 const MyMemoriesPage = () => {

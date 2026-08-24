@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AppProvider, useApp } from './context/AppContext';
+import { EasterEggProvider } from './context/EasterEggContext';
+import EasterEggModal from './components/EasterEggModal';
 import ProfileSelect from './pages/ProfileSelect';
 import Home from './pages/Home';
 import MemoryDetail from './pages/MemoryDetail';
 import MyMemoriesPage from './pages/MyMemoriesPage';
-import TimelinePage from './pages/TimelinePage';
-import StatsPage from './pages/StatsPage';
+import FinaleScreen from './pages/FinaleScreen';
 
 function AppRoutes() {
   const { currentProfile } = useApp();
@@ -26,12 +27,8 @@ function AppRoutes() {
         element={currentProfile ? <MyMemoriesPage /> : <Navigate to="/profile" replace />}
       />
       <Route
-        path="/timeline"
-        element={currentProfile ? <TimelinePage /> : <Navigate to="/profile" replace />}
-      />
-      <Route
-        path="/stats"
-        element={currentProfile ? <StatsPage /> : <Navigate to="/profile" replace />}
+        path="/finale"
+        element={currentProfile ? <FinaleScreen /> : <Navigate to="/profile" replace />}
       />
       <Route
         path="*"
@@ -44,9 +41,12 @@ function AppRoutes() {
 function App() {
   return (
     <AppProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+      <EasterEggProvider>
+        <BrowserRouter>
+          <AppRoutes />
+          <EasterEggModal />
+        </BrowserRouter>
+      </EasterEggProvider>
     </AppProvider>
   );
 }

@@ -231,6 +231,44 @@ export const memories = [
     quotes: ['"Kita pesan terlalu banyak. Lagi."'],
   },
 
+  // ── HIDDEN MEMORY (only accessible via easter egg) ───────────────────────
+  {
+    id: 99,
+    title: 'Pesan yang Tidak Pernah Terkirim',
+    description:
+      'Kamu menemukannya. Ini adalah kenangan yang selalu ada di sini — tersembunyi di antara semua kenangan lainnya. Bukan karena tidak penting, tapi justru karena terlalu penting untuk ditampilkan begitu saja. Ada hal-hal yang ingin kami sampaikan tapi tidak pernah kami temukan caranya. Ini salah satunya: terima kasih sudah ada.',
+    year: '2023–2025',
+    date: '2025-08-24',
+    duration: 'Tak terbatas',
+    genre: ['Core Memory', 'Tersembunyi'],
+    tags: ['secret', 'hidden', 'easter egg', 'letter', 'terima kasih'],
+    people: ['danendra', 'grace', 'friend1'],
+    location: 'Di antara semua kenangan ini',
+    season: null,
+    episode: null,
+    coverImage: img1,
+    backdropImage: img13,
+    backdropVideo: null,
+    media: [
+      { type: 'image', src: img1, caption: 'Di mana semuanya dimulai.' },
+      { type: 'image', src: img6, caption: 'Momen yang tidak sempat terdokumentasi.' },
+      { type: 'image', src: img13, caption: 'Sebelum semuanya berubah.' },
+    ],
+    badge: '🔓 Tersembunyi',
+    featured: false,
+    hidden: true,
+    trivia: [
+      'Kenangan ini hanya bisa ditemukan oleh mereka yang benar-benar mencari.',
+      'Ada banyak hal yang tidak pernah terucap. Ini salah satunya.',
+      'Kamu menemukannya. Itu berarti sesuatu.',
+    ],
+    quotes: [
+      '"Terima kasih sudah ada."',
+      '"Aku tidak tahu cara mengatakannya. Tapi kamu tahu."',
+      '"Persahabatan terbaik adalah yang tidak butuh banyak kata."',
+    ],
+  },
+
   // ── SEASON 3: Almost Goodbye ─────────────────────────────────────────────
   {
     id: 9,
@@ -343,18 +381,22 @@ export const memories = [
 
 // ── Derived collections ───────────────────────────────────────────────────
 
-export const featuredMemory = memories.find((m) => m.featured) || memories[5];
+// Public memories (excludes hidden easter egg entries)
+export const publicMemories = memories.filter((m) => !m.hidden);
 
-export const top10 = memories
+export const featuredMemory = publicMemories.find((m) => m.featured) || publicMemories[5];
+
+export const top10 = publicMemories
   .slice()
   .sort((a, b) => b.id - a.id)
   .slice(0, 10)
   .map((m, i) => ({ ...m, rank: i + 1 }));
 
+// Finds any memory including hidden ones (for direct ID lookup / easter egg access)
 export const getMemoryById = (id) => memories.find((m) => m.id === Number(id));
 
 export const getRelated = (memory, limit = 8) =>
-  memories
+  publicMemories
     .filter(
       (m) =>
         m.id !== memory.id &&
@@ -364,12 +406,12 @@ export const getRelated = (memory, limit = 8) =>
     .slice(0, limit);
 
 export const getSeasonMemories = (seasonId) =>
-  memories.filter((m) => m.season === seasonId);
+  publicMemories.filter((m) => m.season === seasonId);
 
 export const searchMemories = (query) => {
   const q = query.toLowerCase().trim();
   if (q.length < 2) return [];
-  return memories.filter(
+  return publicMemories.filter(
     (m) =>
       m.title.toLowerCase().includes(q) ||
       m.description.toLowerCase().includes(q) ||

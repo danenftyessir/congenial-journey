@@ -1327,17 +1327,22 @@ Track what is built vs. not built. Update this section after every work session.
 | Friendship statistics | 2 | ✓ Done | `/stats` — global + profile-specific counts, highlights, genre, co-person |
 | Surprise Me | 2 | ✓ Done | Dice icon in Navbar, animation → reveal random memory |
 | Notifications | 2 | ✓ Done | 6 notifications, unread count badge, mark all read |
-| Easter eggs | 3 | ✗ Not built | — |
-| Hidden memories | 3 | ✗ Not built | — |
-| Final season experience | 3 | ✗ Not built | — |
+| Easter eggs | 3 | ✓ Done | Konami code (↑↑↓↓←→←→BA) + logo 5× click → EasterEggModal reveals hidden memory |
+| Hidden memories | 3 | ✓ Done | Memory id:99 (`hidden:true`) — only in `memories.js`, excluded from all public lists, accessible via easter egg or direct URL |
+| Final season experience | 3 | ✓ Done | `/finale` — cinematic multi-phase THE END screen → Season 4 Coming Soon → CTA |
+| Coming Soon row | 3 | ✓ Done | `ComingSoonRow` on Home — 4 gradient teaser cards, navigate to /finale on click |
+| Advanced animations | 3 | ✓ Done | FinaleScreen multi-phase fade transitions, EasterEggModal animated reveal |
 
 ## Data Architecture
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Memory data model | ✓ Done | `src/data/memories.js` — full model with people[], tags[], location, season, episode, media[], trivia[], quotes[] |
+| Memory data model | ✓ Done | `src/data/memories.js` — full model + `hidden:true` flag for easter egg memory (id:99) |
+| Public/hidden split | ✓ Done | `publicMemories` export excludes hidden; `memories` array includes all; all UI uses `publicMemories` |
 | Profiles data | ✓ Done | `src/data/profiles.js` — 3 profiles with id, color, greeting |
 | Seasons/Episodes data | ✓ Done | `src/data/seasons.js` — 3 seasons |
 | People data | ✓ Done | `src/data/profiles.js` (people object) |
+| Notifications data | ✓ Done | `src/data/notifications.js` — 6 notifications |
+| Coming Soon data | ✓ Done | `src/data/comingSoon.js` — 4 future memory teasers |
+| Easter egg state | ✓ Done | localStorage key `nfm_eggs` — array of discovered egg types |
 | Genres data | ✗ Not built | Genres are inline strings in memory objects |
-| Notifications data | ✗ Not built | Phase 2 |

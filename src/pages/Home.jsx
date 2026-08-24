@@ -4,8 +4,9 @@ import 'aos/dist/aos.css';
 import Navbar from '../components/Navbar';
 import HeroBanner from '../components/HeroBanner';
 import MemoryRow from '../components/MemoryRow';
+import ComingSoonRow from '../components/ComingSoonRow';
 import Footer from '../components/Footer';
-import { memories, top10 } from '../data/memories';
+import { publicMemories as memories, top10 } from '../data/memories';
 import { useApp } from '../context/AppContext';
 
 const Home = () => {
@@ -138,6 +139,8 @@ const Home = () => {
         )}
 
         <MemoryRow title="Jelajahi Semua Kenangan" items={memories} />
+
+        <ComingSoonRow />
       </div>
 
       {/* "Are you still reminiscing?" */}

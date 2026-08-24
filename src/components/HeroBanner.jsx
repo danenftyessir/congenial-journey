@@ -2,15 +2,22 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaPlay } from 'react-icons/fa6';
 import { Info, VolumeX, Volume2, Plus, Check } from 'lucide-react';
-import { featuredMemory } from '../data/memories';
+import { featuredMemory, publicMemories } from '../data/memories';
 import { useApp } from '../context/AppContext';
 
 const HeroBanner = () => {
   const navigate = useNavigate();
-  const { myList, toggleMyList, watchProgress } = useApp();
-  const memory = featuredMemory;
+  const { myList, toggleMyList, watchProgress, recentlyWatched } = useApp();
   const [muted, setMuted] = useState(true);
   const videoRef = useRef(null);
+
+  // Show the most recently in-progress memory in the hero (Netflix-style dynamic hero).
+  // Fall back to the static featured memory when nothing is in progress.
+  const inProgressMemory = recentlyWatched
+    .map((id) => publicMemories.find((m) => m.id === id))
+    .find((m) => m && watchProgress[m.id] > 0 && watchProgress[m.id] < 100);
+  const memory = inProgressMemory || featuredMemory;
+
   const inMyList = myList.includes(memory.id);
   const progress = watchProgress[memory.id];
 

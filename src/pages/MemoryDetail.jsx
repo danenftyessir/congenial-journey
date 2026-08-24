@@ -8,7 +8,7 @@ import EpisodeList from '../components/EpisodeList';
 import MemoryRow from '../components/MemoryRow';
 import ReactionPicker from '../components/ReactionPicker';
 import Footer from '../components/Footer';
-import { getMemoryById, getRelated, getSeasonMemories, memories } from '../data/memories';
+import { getMemoryById, getRelated, getSeasonMemories, publicMemories as memories } from '../data/memories';
 import { seasons } from '../data/seasons';
 import { people } from '../data/profiles';
 import { useApp } from '../context/AppContext';
@@ -230,7 +230,18 @@ const MemoryDetail = () => {
       <Footer />
 
       {viewerOpen && (
-        <MediaViewer memory={memory} onClose={() => setViewerOpen(false)} />
+        <MediaViewer
+          memory={memory}
+          onClose={() => setViewerOpen(false)}
+          startIndex={
+            progress > 0 && memory.media?.length > 0
+              ? Math.min(
+                  Math.max(0, Math.round((progress / 100) * memory.media.length) - 1),
+                  memory.media.length - 1
+                )
+              : 0
+          }
+        />
       )}
     </main>
   );

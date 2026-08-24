@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { FaPlay } from 'react-icons/fa6';
-import { memories } from '../data/memories';
+import { publicMemories as memories } from '../data/memories';
 import { useApp } from '../context/AppContext';
 
 const SurpriseMe = ({ onClose }) => {

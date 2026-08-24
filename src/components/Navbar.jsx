@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Bell, ChevronDown, Search, User, LogOut, BookMarked, Clock, BarChart2, Dice5 } from 'lucide-react';
+import { Bell, ChevronDown, Search, User, LogOut, BookMarked, Dice5 } from 'lucide-react';
 import netflixLogo from '../assets/Netflix_Logomark.png';
 import { useApp } from '../context/AppContext';
+import { useEasterEgg } from '../context/EasterEggContext';
 import { notifications } from '../data/notifications';
 import SearchOverlay from './SearchOverlay';
 import NotificationCenter from './NotificationCenter';
@@ -12,6 +13,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { currentProfile, clearProfile, readNotifs } = useApp();
+  const { handleLogoClick, logoClicks } = useEasterEgg();
 
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -34,8 +36,6 @@ const Navbar = () => {
   const navItems = [
     { label: 'Beranda', path: '/home' },
     { label: 'My Memories', path: '/my-memories' },
-    { label: 'Timeline', path: '/timeline' },
-    { label: 'Statistik', path: '/stats' },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -53,8 +53,9 @@ const Navbar = () => {
           {/* Left — logo + nav */}
           <div className="flex items-center gap-6 lg:gap-8">
             <button
-              onClick={() => navigate('/home')}
-              className="flex-shrink-0 w-[90px] lg:w-[100px]"
+              onClick={() => { navigate('/home'); handleLogoClick(); }}
+              className="flex-shrink-0 w-[90px] lg:w-[100px] relative"
+              title={logoClicks > 0 ? `${logoClicks}/5` : undefined}
             >
               <img src={netflixLogo} alt="logo" className="w-full" />
             </button>
@@ -171,22 +172,6 @@ const Navbar = () => {
                 >
                   <BookMarked size={15} />
                   My Memories
-                </button>
-
-                <button
-                  onClick={() => navigate('/timeline')}
-                  className="flex items-center gap-2.5 px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors text-left"
-                >
-                  <Clock size={15} />
-                  Timeline
-                </button>
-
-                <button
-                  onClick={() => navigate('/stats')}
-                  className="flex items-center gap-2.5 px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors text-left"
-                >
-                  <BarChart2 size={15} />
-                  Statistik
                 </button>
 
                 <div className="border-t border-white/10 mt-1 pt-1">
