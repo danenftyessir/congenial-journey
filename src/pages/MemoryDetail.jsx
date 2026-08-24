@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { FaPlay } from 'react-icons/fa6';
-import { Plus, Check, ArrowLeft, MapPin, Calendar, Clock } from 'lucide-react';
+import { Plus, Check, ArrowLeft, MapPin, Calendar, Clock, Images } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import MediaViewer from '../components/MediaViewer';
 import EpisodeList from '../components/EpisodeList';
@@ -30,9 +30,17 @@ const MemoryDetail = () => {
   const navigate = useNavigate();
   const { myList, toggleMyList, watchProgress, addToRecent, reactions } = useApp();
   const [viewerOpen, setViewerOpen] = useState(false);
+  const [viewerIndex, setViewerIndex] = useState(0);
 
   const memory = getMemoryById(id);
   if (!memory) return <Navigate to="/home" replace />;
+
+  const isSeries = memory.type === 'series';
+
+  const openAt = (index) => {
+    setViewerIndex(index);
+    setViewerOpen(true);
+  };
 
   const inMyList = myList.includes(memory.id);
   const progress = watchProgress[memory.id];
@@ -40,7 +48,8 @@ const MemoryDetail = () => {
   const becauseYouWatched = getRelatedByWatch(memory);
   const season = seasons.find((s) => s.id === memory.season);
   const seasonEpisodes = season ? getSeasonMemories(season.id) : [];
-  const peopleNames = memory.people.map((pid) => people[pid]?.name || pid).join(', ');
+  const cast = memory.people.map((pid) => people[pid]?.name || pid);
+  const hasVideo = memory.media?.some((m) => m.type === 'video' || m.type === 'youtube');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -95,8 +104,8 @@ const MemoryDetail = () => {
             ))}
           </div>
 
-          {/* Progress bar */}
-          {progress > 0 && progress < 100 && (
+          {/* Progress bar — only when there's video content */}
+          {hasVideo && progress > 0 && progress < 100 && (
             <div className="w-48 mb-3">
               <div className="h-0.5 bg-gray-600 rounded-full">
                 <div className="h-full bg-[#e50914] rounded-full" style={{ width: `${progress}%` }} />
@@ -108,11 +117,24 @@ const MemoryDetail = () => {
           {/* CTAs */}
           <div className="flex flex-wrap items-center gap-3">
             <button
-              onClick={() => setViewerOpen(true)}
+              onClick={() => {
+                const idx = isSeries
+                  ? 0
+                  : hasVideo && progress > 0 && memory.media?.length > 0
+                  ? Math.min(Math.max(0, Math.round((progress / 100) * memory.media.length) - 1), memory.media.length - 1)
+                  : 0;
+                openAt(idx);
+              }}
               className="flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded font-bold hover:bg-gray-200 active:scale-95 transition-all text-sm lg:text-base"
             >
-              <FaPlay size={14} />
-              {progress > 0 && progress < 100 ? 'Lanjutkan' : 'Putar'}
+              {hasVideo || isSeries ? <FaPlay size={14} /> : <Images size={14} />}
+              {isSeries
+                ? 'Putar Episode 1'
+                : hasVideo && progress > 0 && progress < 100
+                ? 'Lanjutkan'
+                : hasVideo
+                ? 'Putar'
+                : 'Lihat Foto'}
             </button>
             <button
               onClick={() => toggleMyList(memory.id)}
@@ -134,13 +156,6 @@ const MemoryDetail = () => {
               {memory.description}
             </p>
 
-            {peopleNames && (
-              <p className="text-sm">
-                <span className="text-gray-500">Orang yang hadir:&nbsp;</span>
-                <span className="text-white">{peopleNames}</span>
-              </p>
-            )}
-
             {memory.tags.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {memory.tags.map((tag) => (
@@ -154,6 +169,56 @@ const MemoryDetail = () => {
               </div>
             )}
 
+            {/* Episode list — series only */}
+            {isSeries && memory.media?.length > 0 && (
+              <div className="border-t border-white/10 pt-6">
+                <h3 className="text-gray-500 font-bold text-xs mb-4 uppercase tracking-widest">
+                  Episode
+                </h3>
+                <div className="flex flex-col divide-y divide-white/5">
+                  {memory.media.map((ep, i) => {
+                    const thumb =
+                      ep.thumbnail ||
+                      (ep.type === 'image'
+                        ? ep.src
+                        : ep.type === 'youtube'
+                        ? `https://img.youtube.com/vi/${ep.videoId}/mqdefault.jpg`
+                        : null);
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => openAt(i)}
+                        className="flex items-center gap-4 py-3 text-left group hover:bg-white/5 rounded-lg px-2 -mx-2 transition-colors"
+                      >
+                        <span className="text-gray-600 text-sm font-bold w-5 flex-shrink-0 group-hover:text-gray-400 transition-colors">
+                          {i + 1}
+                        </span>
+                        <div className="relative w-28 h-16 flex-shrink-0 rounded overflow-hidden bg-gray-800">
+                          {thumb && (
+                            <img
+                              src={thumb}
+                              alt=""
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          )}
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <FaPlay size={14} className="text-white" />
+                          </div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-gray-500 text-xs mb-0.5">episode {i + 1}</p>
+                          <p className="text-gray-200 text-sm font-medium group-hover:text-white transition-colors">
+                            {ep.caption || `episode ${i + 1}`}
+                          </p>
+                        </div>
+                        <FaPlay size={12} className="text-gray-600 group-hover:text-white flex-shrink-0 transition-colors mr-1" />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
             {/* Reactions */}
             <div className="border-t border-white/10 pt-5">
               <ReactionPicker memoryId={memory.id} />
@@ -162,51 +227,36 @@ const MemoryDetail = () => {
 
           {/* Right */}
           <div className="flex flex-col gap-6">
-            {memory.trivia?.length > 0 && (
+            {cast.length > 0 && (
               <div>
                 <h3 className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-3">
-                  Did You Know
+                  Pemeran
                 </h3>
-                <div className="flex flex-col gap-2">
-                  {memory.trivia.map((t, i) => (
-                    <p key={i} className="text-gray-300 text-sm leading-relaxed border-l-2 border-[#e50914]/40 pl-3">
-                      {t}
+                <div className="flex flex-col gap-1.5">
+                  {cast.map((name) => (
+                    <p key={name} className="text-white text-sm">
+                      {name}
                     </p>
                   ))}
                 </div>
               </div>
             )}
 
-            {memory.quotes?.length > 0 && (
-              <div>
-                <h3 className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-3">
-                  Quotes
-                </h3>
-                <div className="flex flex-col gap-3">
-                  {memory.quotes.map((q, i) => (
-                    <p key={i} className="text-gray-300 text-sm italic leading-relaxed">
-                      {q}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {memory.media?.length > 0 && (
-              <button onClick={() => setViewerOpen(true)} className="text-left group">
+            {!isSeries && memory.media?.length > 0 && (
+              <button onClick={() => openAt(0)} className="text-left group">
                 <h3 className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-2">
                   Media
                 </h3>
                 <p className="text-[#e50914] text-sm group-hover:underline">
-                  {memory.media.length} foto/video — Putar
+                  {memory.media.length} foto/video
                 </p>
               </button>
             )}
           </div>
         </div>
 
-        {/* Episode list */}
-        {season && seasonEpisodes.length > 0 && (
+        {/* Season episode list — only for non-series memories */}
+        {!isSeries && season && seasonEpisodes.length > 0 && (
           <div className="mt-12 border-t border-white/10 pt-10">
             <EpisodeList season={season} episodes={seasonEpisodes} currentId={memory.id} />
           </div>
@@ -233,14 +283,7 @@ const MemoryDetail = () => {
         <MediaViewer
           memory={memory}
           onClose={() => setViewerOpen(false)}
-          startIndex={
-            progress > 0 && memory.media?.length > 0
-              ? Math.min(
-                  Math.max(0, Math.round((progress / 100) * memory.media.length) - 1),
-                  memory.media.length - 1
-                )
-              : 0
-          }
+          startIndex={viewerIndex}
         />
       )}
     </main>

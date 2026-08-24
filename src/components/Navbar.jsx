@@ -1,37 +1,41 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Bell, ChevronDown, Search, User, LogOut, BookMarked, Dice5 } from 'lucide-react';
+import { Trophy, ChevronDown, Search, User, LogOut, BookMarked, Dice5 } from 'lucide-react';
 import netflixLogo from '../assets/Netflix_Logomark.png';
 import { useApp } from '../context/AppContext';
 import { useEasterEgg } from '../context/EasterEggContext';
-import { notifications } from '../data/notifications';
+import { achievements } from '../data/achievements';
+import { publicMemories } from '../data/memories';
 import SearchOverlay from './SearchOverlay';
-import NotificationCenter from './NotificationCenter';
+import AchievementCenter from './AchievementCenter';
 import SurpriseMe from './SurpriseMe';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { currentProfile, clearProfile, readNotifs } = useApp();
+  const {
+    currentProfile,
+    clearProfile,
+    watchProgress,
+    visitedMemories,
+    myList,
+    reactions,
+    seenAchievements,
+  } = useApp();
   const { handleLogoClick, logoClicks } = useEasterEgg();
 
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [notifOpen, setNotifOpen] = useState(false);
+  const [achieveOpen, setAchieveOpen] = useState(false);
   const [surpriseOpen, setSurpriseOpen] = useState(false);
 
-  const notifRef = useRef(null);
+  const achieveRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const handleLogout = () => {
-    clearProfile();
-    navigate('/profile');
-  };
 
   const navItems = [
     { label: 'Beranda', path: '/home' },
@@ -40,7 +44,29 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
-  const unreadCount = notifications.filter((n) => !readNotifs.includes(n.id)).length;
+  const handleLogout = () => {
+    clearProfile();
+    navigate('/profile');
+  };
+
+  // Count achievements unlocked but not yet seen in the panel
+  const unseenCount = useMemo(() => {
+    const eggs = (() => {
+      try { return JSON.parse(localStorage.getItem('nfm_eggs') || '[]'); } catch { return []; }
+    })();
+    const state = {
+      visited: visitedMemories.length,
+      totalPublic: publicMemories.length,
+      myList: myList.length,
+      reactionsCount: Object.keys(reactions).length,
+      completedCount: Object.values(watchProgress).filter((p) => p >= 90).length,
+      eggs,
+    };
+    return achievements.filter((a) => {
+      const { current, target } = a.getProgress(state);
+      return current >= target && !seenAchievements.includes(a.id);
+    }).length;
+  }, [watchProgress, visitedMemories, myList, reactions, seenAchievements]);
 
   return (
     <>
@@ -77,7 +103,7 @@ const Navbar = () => {
             </nav>
           </div>
 
-          {/* Right — surprise, search, bell, profile */}
+          {/* Right — surprise, search, achievements, profile */}
           <div className="flex items-center gap-4 lg:gap-5 text-white">
             {/* Surprise Me */}
             <button
@@ -98,22 +124,22 @@ const Navbar = () => {
               <Search size={20} />
             </button>
 
-            {/* Bell / Notifications */}
-            <div className="relative" ref={notifRef}>
+            {/* Achievements */}
+            <div className="relative" ref={achieveRef}>
               <button
-                onClick={() => setNotifOpen((o) => !o)}
+                onClick={() => setAchieveOpen((o) => !o)}
                 className="hover:text-gray-300 transition-colors relative"
-                aria-label="Notifikasi"
+                aria-label="Achievements"
               >
-                <Bell size={20} />
-                {unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#e50914] text-white text-[9px] font-bold flex items-center justify-center leading-none">
-                    {unreadCount}
+                <Trophy size={20} className={unseenCount > 0 ? 'text-amber-400' : ''} />
+                {unseenCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-amber-400 text-black text-[9px] font-bold flex items-center justify-center leading-none">
+                    {unseenCount}
                   </span>
                 )}
               </button>
-              {notifOpen && (
-                <NotificationCenter onClose={() => setNotifOpen(false)} />
+              {achieveOpen && (
+                <AchievementCenter onClose={() => setAchieveOpen(false)} />
               )}
             </div>
 
@@ -136,15 +162,11 @@ const Navbar = () => {
               <div className="absolute opacity-0 invisible group-hover:visible group-hover:opacity-100 duration-200 top-full right-0 mt-2 bg-[#1c1c1c]/95 border border-white/10 rounded-md py-2 min-w-[200px] flex flex-col backdrop-blur-sm">
                 {/* Profile info */}
                 <div className="px-4 py-2.5 border-b border-white/10 mb-1">
-                  <p className="text-white text-sm font-semibold">
-                    {currentProfile?.name}
-                  </p>
-                  <p className="text-gray-500 text-xs mt-0.5">
-                    {currentProfile?.greeting}
-                  </p>
+                  <p className="text-white text-sm font-semibold">{currentProfile?.name}</p>
+                  <p className="text-gray-500 text-xs mt-0.5">{currentProfile?.greeting}</p>
                 </div>
 
-                {/* Mobile nav links (hidden on desktop) */}
+                {/* Mobile nav links */}
                 <div className="lg:hidden">
                   {navItems.slice(1).map((item) => (
                     <button

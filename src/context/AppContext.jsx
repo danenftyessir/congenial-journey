@@ -37,9 +37,14 @@ export const AppProvider = ({ children }) => {
     load('nfm_progress', {})
   );
 
-  // Array of memory IDs, most-recently-viewed first (max 20)
+  // Array of memory IDs, most-recently-viewed first (max 20, for Continue Watching UI)
   const [recentlyWatched, setRecentlyWatched] = useState(() =>
     load('nfm_recent', [])
+  );
+
+  // Unbounded set of all visited memory IDs — used for achievement tracking
+  const [visitedMemories, setVisitedMemories] = useState(() =>
+    load('nfm_visited', [])
   );
 
   // { [memoryId]: reactionId ('heart' | 'miss' | 'laugh' | 'skull' | 'star') }
@@ -47,9 +52,9 @@ export const AppProvider = ({ children }) => {
     load('nfm_reactions', {})
   );
 
-  // Array of notification IDs that have been read
-  const [readNotifs, setReadNotifs] = useState(() =>
-    load('nfm_read_notifs', [])
+  // Array of achievement IDs the user has seen while unlocked (for badge count)
+  const [seenAchievements, setSeenAchievements] = useState(() =>
+    load('nfm_seen_achievements', [])
   );
 
   // ── Profile ──────────────────────────────────────────────────────────────
@@ -86,13 +91,21 @@ export const AppProvider = ({ children }) => {
     });
   };
 
-  // ── Recently Watched ──────────────────────────────────────────────────────
+  // ── Recently Watched + Visited ────────────────────────────────────────────
 
   const addToRecent = (memoryId) => {
+    // Capped list for Continue Watching UI
     setRecentlyWatched((prev) => {
       const filtered = prev.filter((id) => id !== memoryId);
       const next = [memoryId, ...filtered].slice(0, 20);
       save('nfm_recent', next);
+      return next;
+    });
+    // Unbounded set for achievement tracking
+    setVisitedMemories((prev) => {
+      if (prev.includes(memoryId)) return prev;
+      const next = [...prev, memoryId];
+      save('nfm_visited', next);
       return next;
     });
   };
@@ -103,7 +116,6 @@ export const AppProvider = ({ children }) => {
     setReactionsState((prev) => {
       let next;
       if (!reactionId || reactionId === prev[memoryId]) {
-        // Toggle off — remove the key
         next = { ...prev };
         delete next[memoryId];
       } else {
@@ -114,13 +126,14 @@ export const AppProvider = ({ children }) => {
     });
   };
 
-  // ── Notifications ─────────────────────────────────────────────────────────
+  // ── Achievements ──────────────────────────────────────────────────────────
 
-  const markNotifRead = (id) => {
-    setReadNotifs((prev) => {
-      if (prev.includes(id)) return prev;
-      const next = [...prev, id];
-      save('nfm_read_notifs', next);
+  const markAchievementsSeen = (ids) => {
+    setSeenAchievements((prev) => {
+      const newIds = ids.filter((id) => !prev.includes(id));
+      if (newIds.length === 0) return prev;
+      const next = [...prev, ...newIds];
+      save('nfm_seen_achievements', next);
       return next;
     });
   };
@@ -136,11 +149,12 @@ export const AppProvider = ({ children }) => {
         watchProgress,
         updateProgress,
         recentlyWatched,
+        visitedMemories,
         addToRecent,
         reactions,
         setReaction,
-        readNotifs,
-        markNotifRead,
+        seenAchievements,
+        markAchievementsSeen,
       }}
     >
       {children}

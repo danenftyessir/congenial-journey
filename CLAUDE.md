@@ -1295,7 +1295,8 @@ Track what is built vs. not built. Update this section after every work session.
 | MyMemoriesPage | ✓ Done | `pages/MyMemoriesPage.jsx` |
 | TimelinePage | ✓ Done | `pages/TimelinePage.jsx` |
 | StatsPage | ✓ Done | `pages/StatsPage.jsx` |
-| NotificationCenter | ✓ Done | Bell dropdown, unread dot, mark all read, navigate to memory |
+| NotificationCenter | ✗ Replaced | Replaced by AchievementCenter |
+| AchievementCenter | ✓ Done | Trophy dropdown, 10 dynamic achievements, per-achievement progress bars, overall % |
 | ReactionPicker | ✓ Done | 5 emoji reactions, compact/full modes, localStorage persist |
 | SurpriseMe | ✓ Done | Dice modal: selecting animation → reveal random memory |
 | Modal | ⚠ Legacy | Old generic modal, no longer used in main flow |
@@ -1326,7 +1327,8 @@ Track what is built vs. not built. Update this section after every work session.
 | Timeline view | 2 | ✓ Done | `/timeline` — vertical, grouped by year, month label, progress bars |
 | Friendship statistics | 2 | ✓ Done | `/stats` — global + profile-specific counts, highlights, genre, co-person |
 | Surprise Me | 2 | ✓ Done | Dice icon in Navbar, animation → reveal random memory |
-| Notifications | 2 | ✓ Done | 6 notifications, unread count badge, mark all read |
+| Notifications | 2 | ✗ Replaced | Replaced by dynamic Achievement system |
+| Achievements | 2 | ✓ Done | 10 dynamic achievements (common/uncommon/rare/legendary), per-achievement progress bars, overall %, unseen badge on Trophy icon, localStorage persist via `nfm_seen_achievements` + `nfm_visited` |
 | Easter eggs | 3 | ✓ Done | Konami code (↑↑↓↓←→←→BA) + logo 5× click → EasterEggModal reveals hidden memory |
 | Hidden memories | 3 | ✓ Done | Memory id:99 (`hidden:true`) — only in `memories.js`, excluded from all public lists, accessible via easter egg or direct URL |
 | Final season experience | 3 | ✓ Done | `/finale` — cinematic multi-phase THE END screen → Season 4 Coming Soon → CTA |
@@ -1342,7 +1344,8 @@ Track what is built vs. not built. Update this section after every work session.
 | Profiles data | ✓ Done | `src/data/profiles.js` — 3 profiles with id, color, greeting |
 | Seasons/Episodes data | ✓ Done | `src/data/seasons.js` — 3 seasons |
 | People data | ✓ Done | `src/data/profiles.js` (people object) |
-| Notifications data | ✓ Done | `src/data/notifications.js` — 6 notifications |
+| Notifications data | ✗ Unused | `src/data/notifications.js` — superseded by achievements |
+| Achievements data | ✓ Done | `src/data/achievements.js` — 10 achievement definitions with dynamic `getProgress()` |
 | Coming Soon data | ✓ Done | `src/data/comingSoon.js` — 4 future memory teasers |
 | Easter egg state | ✓ Done | localStorage key `nfm_eggs` — array of discovered egg types |
 | Genres data | ✗ Not built | Genres are inline strings in memory objects |

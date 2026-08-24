@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import Aos from 'aos';
-import 'aos/dist/aos.css';
 import Navbar from '../components/Navbar';
 import HeroBanner from '../components/HeroBanner';
 import MemoryRow from '../components/MemoryRow';
@@ -11,10 +9,6 @@ import { useApp } from '../context/AppContext';
 const Home = () => {
   const { currentProfile, myList, watchProgress, recentlyWatched, reactions } = useApp();
   const [showAre, setShowAre] = useState(false);
-
-  useEffect(() => {
-    Aos.init({ once: true });
-  }, []);
 
   // "Are you still reminiscing?" after 7+ memories touched
   useEffect(() => {

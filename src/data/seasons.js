@@ -17,7 +17,7 @@ export const seasons = [
     id: 3,
     title: 'Almost Goodbye',
     description: 'Everything gets heavier when you know time is running out.',
-    year: '2025',
-    episodeIds: [9, 10, 11, 12],
+    year: '2025–2026',
+    episodeIds: [9, 10, 11, 12, 13, 14, 15],
   },
 ];

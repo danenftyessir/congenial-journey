@@ -76,6 +76,19 @@ const MediaViewer = ({ memory, onClose, startIndex = 0 }) => {
             style={{ maxHeight: 'calc(100vh - 160px)' }}
           />
         )}
+        {item.type === 'youtube' && (
+          <div className="w-full max-w-4xl px-4" style={{ aspectRatio: '16/9' }}>
+            <iframe
+              key={item.videoId}
+              src={`https://www.youtube.com/embed/${item.videoId}?autoplay=1&rel=0`}
+              title={item.caption || memory.title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="w-full h-full rounded-lg"
+            />
+          </div>
+        )}
 
         {/* Caption */}
         {item.caption && item.type === 'image' && (
@@ -118,8 +131,29 @@ const MediaViewer = ({ memory, onClose, startIndex = 0 }) => {
                 <img src={m.src} alt="" className="w-full h-full object-cover" />
               )}
               {m.type === 'video' && (
-                <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                  <Play size={14} className="text-white" />
+                m.thumbnail ? (
+                  <div className="w-full h-full relative overflow-hidden">
+                    <img src={m.thumbnail} alt="" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                      <Play size={10} className="text-white" />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                    <Play size={14} className="text-white" />
+                  </div>
+                )
+              )}
+              {m.type === 'youtube' && (
+                <div className="w-full h-full relative overflow-hidden">
+                  <img
+                    src={m.thumbnail || `https://img.youtube.com/vi/${m.videoId}/mqdefault.jpg`}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                    <Play size={10} className="text-white" />
+                  </div>
                 </div>
               )}
             </button>

@@ -71,10 +71,10 @@ const SurpriseMe = ({ onClose }) => {
                 alt={picked.title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-[#181818]/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-[#181818]/60 to-transparent" />
             </div>
 
-            <div className="px-6 pb-7 -mt-2 text-center">
+            <div className="px-6 pb-7 pt-4 text-center">
               <p className="text-[#e50914] text-[11px] font-bold uppercase tracking-widest mb-2">
                 Rekomendasi Malam Ini
               </p>
