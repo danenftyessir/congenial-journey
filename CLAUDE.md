@@ -1203,3 +1203,141 @@ The application is not simply a gallery.
 It is not simply a Netflix clone.
 
 It is an **interactive streaming experience for memories.**
+
+---
+
+# 44. Architecture Constraints (HARD RULES)
+
+## Pure Frontend — No Backend, No Database
+
+This application is **100% client-side only**. There is no backend server, no database, no API.
+
+- All data lives in `src/data/` as static JS/TS files
+- All state persists via `localStorage` only
+- No `fetch()` calls to external APIs (except publicly available images if absolutely needed)
+- No server-side rendering
+- Routing is handled by `react-router-dom` (frontend routing)
+- Do not add any backend framework (Express, Fastify, Next.js API routes, etc.)
+- Do not add any database (Supabase, Firebase, SQLite, etc.)
+
+If a feature requires a backend, defer it or simulate it with static data + localStorage.
+
+**Tech stack locked to:**
+- React 18 + Vite
+- Tailwind CSS
+- react-router-dom (frontend routing)
+- AOS (scroll animations)
+- localStorage (persistence)
+- No other runtime dependencies unless approved
+
+---
+
+# 45. CLAUDE.md Maintenance Rule
+
+**Every time a feature is added, modified, or removed, update this file immediately.**
+
+Specifically:
+- Mark completed features in Section 45 (Implementation Status) as `✓ Done`
+- If the data model, component list, or tech stack changes, update the relevant section
+- If a design decision is made that overrides a spec item, note it in the relevant section
+- Keep Section 45 as the single source of truth for current implementation state
+
+This file must never be more than one session out of date.
+
+**Trigger:** After any commit or significant code change, review Section 45 and update statuses.
+
+---
+
+# 45. Implementation Status (Last updated: 2026-08-24)
+
+Track what is built vs. not built. Update this section after every work session.
+
+## Tech Stack (Current)
+- React 18.3.1 + Vite
+- Tailwind CSS 3.4.14
+- AOS 2.3.4 (scroll animations)
+- Lucide React + React Icons
+- react-router-dom v6 (frontend routing)
+- React Context + localStorage (state management)
+- Pure frontend — no backend, no database
+
+## Screens
+
+| Screen | Status | Notes |
+|--------|--------|-------|
+| Landing / Splash | ✗ Not built | App opens directly to Profile Select |
+| Profile Selection | ✓ Done | `/profile` — 3 profiles, avatar with color, localStorage persist |
+| Home Page | ✓ Done | `/home` — Hero + 10 dynamic rows incl. Phase 2 personalized rows |
+| Memory Detail Page | ✓ Done | `/memory/:id` — full dynamic detail, seasons, episodes, related, reactions |
+| Media Viewer / Player | ✓ Done | Fullscreen overlay — photo slideshow + video, keyboard nav, thumbnails |
+| Search | ✓ Done | SearchOverlay — searches title, description, genre, tags, people, location, year |
+| My Memories | ✓ Done | `/my-memories` — saved list with localStorage, remove button |
+| Timeline | ✓ Done | `/timeline` — chronological vertical timeline grouped by year |
+| Profile / Stats Page | ✓ Done | `/stats` — friendship statistics, highlights, profile-specific counts |
+| Notifications Center | ✓ Done | Bell dropdown in Navbar, unread count badge, mark all read |
+| Seasons / Episodes View | ✓ Done | EpisodeList inside MemoryDetail page |
+
+## Components
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| Navbar | ✓ Done | Scroll-aware bg, all nav links, SurpriseMe, NotificationCenter, profile dropdown |
+| HeroBanner | ✓ Done | Dynamic data, autoplay video bg, mute toggle, progress bar |
+| MemoryRow | ✓ Done | default / continue / top10 variants, navigate on click |
+| CardImage | ✓ Done | Navigate to detail on click |
+| HoverPopup | ✓ Done | Wired: play→detail, +/✓ toggles myList, reaction badge overlay |
+| MediaViewer | ✓ Done | Fullscreen, photo+video, thumbnails, keyboard nav, progress tracking |
+| SearchOverlay | ✓ Done | Live search, grid results, navigate on select, Escape to close |
+| EpisodeList | ✓ Done | Season header, episodes list, progress bars, navigate on click |
+| Footer | ✓ Done | Simple footer |
+| ProfileSelector | ✓ Done | `pages/ProfileSelect.jsx` |
+| MemoryDetail | ✓ Done | `pages/MemoryDetail.jsx` |
+| MyMemoriesPage | ✓ Done | `pages/MyMemoriesPage.jsx` |
+| TimelinePage | ✓ Done | `pages/TimelinePage.jsx` |
+| StatsPage | ✓ Done | `pages/StatsPage.jsx` |
+| NotificationCenter | ✓ Done | Bell dropdown, unread dot, mark all read, navigate to memory |
+| ReactionPicker | ✓ Done | 5 emoji reactions, compact/full modes, localStorage persist |
+| SurpriseMe | ✓ Done | Dice modal: selecting animation → reveal random memory |
+| Modal | ⚠ Legacy | Old generic modal, no longer used in main flow |
+| MemoryCardLarge | ✗ Not built | Phase 3 candidate |
+| SeasonSelector | ✗ Not built | Phase 3 candidate |
+
+## Features
+
+| Feature | Phase | Status | Notes |
+|---------|-------|--------|-------|
+| Profile switching | 1 | ✓ Done | localStorage, 3 profiles, greeting per profile |
+| Hero section | 1 | ✓ Done | Dynamic, video bg, mute, progress bar, CTAs |
+| Horizontal memory rows | 1 | ✓ Done | 10 dynamic rows on Home |
+| Card hover popup | 1 | ✓ Done | Actions wired, reaction badge |
+| Top 10 cards | 1 | ✓ Done | Data-driven |
+| Continue Watching row | 1 | ✓ Done | localStorage progress, only shows if progress > 0 |
+| Memory detail page | 1 | ✓ Done | Full dynamic, trivia, quotes, tags, people, reactions |
+| Media viewer | 1 | ✓ Done | Photo slideshow + video player |
+| Search | 1 | ✓ Done | Full-text search across all memory fields |
+| My Memories (save) | 1 | ✓ Done | localStorage, toggle, dedicated page |
+| Seasons / Episodes | 1 | ✓ Done | 3 seasons, 12 episodes total |
+| Routing (multi-page) | 1 | ✓ Done | react-router-dom v6, protected routes |
+| localStorage persistence | 1 | ✓ Done | profile, myList, watchProgress, recentlyWatched, reactions, readNotifs |
+| "Are you still reminiscing?" | 1 | ✓ Done | Fires after 7+ memories touched |
+| Personalized rows | 1 | ✓ Done | "Because [Name] Was There" row |
+| Personalized recommendations | 2 | ✓ Done | "Trending", "Paling Sering Diputar", "Karena Kamu Menyukainya", "Because You Watched" |
+| Reactions | 2 | ✓ Done | 5 emoji reactions, localStorage persist, influences recommendations |
+| Timeline view | 2 | ✓ Done | `/timeline` — vertical, grouped by year, month label, progress bars |
+| Friendship statistics | 2 | ✓ Done | `/stats` — global + profile-specific counts, highlights, genre, co-person |
+| Surprise Me | 2 | ✓ Done | Dice icon in Navbar, animation → reveal random memory |
+| Notifications | 2 | ✓ Done | 6 notifications, unread count badge, mark all read |
+| Easter eggs | 3 | ✗ Not built | — |
+| Hidden memories | 3 | ✗ Not built | — |
+| Final season experience | 3 | ✗ Not built | — |
+
+## Data Architecture
+
+| Item | Status | Notes |
+|------|--------|-------|
+| Memory data model | ✓ Done | `src/data/memories.js` — full model with people[], tags[], location, season, episode, media[], trivia[], quotes[] |
+| Profiles data | ✓ Done | `src/data/profiles.js` — 3 profiles with id, color, greeting |
+| Seasons/Episodes data | ✓ Done | `src/data/seasons.js` — 3 seasons |
+| People data | ✓ Done | `src/data/profiles.js` (people object) |
+| Genres data | ✗ Not built | Genres are inline strings in memory objects |
+| Notifications data | ✗ Not built | Phase 2 |

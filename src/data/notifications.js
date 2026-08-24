@@ -1,0 +1,48 @@
+export const notifications = [
+  {
+    id: 'n1',
+    icon: '🎬',
+    title: 'Kenangan baru tersedia',
+    body: '"Before We Said Goodbye" telah ditambahkan ke katalog kita.',
+    memoryId: 12,
+    date: '2025-08-01',
+  },
+  {
+    id: 'n2',
+    icon: '📅',
+    title: 'Dua tahun bersama',
+    body: 'Perjalanan kita dimulai September 2023. Sudah cukup lama.',
+    date: '2025-09-05',
+  },
+  {
+    id: 'n3',
+    icon: '🔔',
+    title: 'Kamu mungkin sudah lupa...',
+    body: '"Random Tuesday" belum ditonton dalam waktu yang lama.',
+    memoryId: 3,
+    date: '2025-07-15',
+  },
+  {
+    id: 'n4',
+    icon: '⭐',
+    title: 'Memory of the Week',
+    body: '"Chaos at 2AM" menjadi kenangan paling banyak diputar minggu ini.',
+    memoryId: 7,
+    date: '2025-08-10',
+  },
+  {
+    id: 'n5',
+    icon: '🎉',
+    title: 'Milestone tercapai',
+    body: 'Kamu sudah menjelajahi lebih dari 10 kenangan. Masih banyak lagi.',
+    date: '2025-08-15',
+  },
+  {
+    id: 'n6',
+    icon: '🥹',
+    title: 'Kenangan terlama kita',
+    body: '"The Beginning of Us" kini berusia 2 tahun. Sepertinya baru kemarin.',
+    memoryId: 1,
+    date: '2025-09-05',
+  },
+];

@@ -1,8 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import useCardHover from '../hooks/useCardHover';
 import HoverPopup from './HoverPopup';
 
 const CardImage = ({ src, idx, item }) => {
-  const { cardRef, isHovered, pos, handleMouseEnter, handleMouseLeave, cancelLeave } = useCardHover();
+  const navigate = useNavigate();
+  const { cardRef, isHovered, pos, handleMouseEnter, handleMouseLeave, cancelLeave } =
+    useCardHover();
 
   return (
     <>
@@ -11,6 +14,7 @@ const CardImage = ({ src, idx, item }) => {
         className="relative w-[140px] lg:w-[170px] h-[210px] lg:h-[255px] flex-shrink-0 rounded overflow-hidden cursor-pointer"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onClick={() => navigate(`/memory/${item?.id}`)}
         data-aos="fade-up"
         data-aos-duration={`${900 + idx * 80}`}
         data-aos-once="true"
@@ -18,7 +22,7 @@ const CardImage = ({ src, idx, item }) => {
         <img
           src={src}
           alt={item?.title || 'memory'}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
 
         {item?.badge && (
