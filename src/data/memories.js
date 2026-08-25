@@ -1,15 +1,14 @@
 import img1 from '../assets/pics/first-photobooth.jpeg';
+import imgAfterPhotobooth1 from '../assets/pics/after-photobooth-1.jpeg';
+import imgAfterPhotobooth2 from '../assets/pics/after-photobooth-2.jpeg';
+import imgAfterPhotobooth3 from '../assets/pics/after-photobooth-3.jpeg';
+import imgAfterPhotobooth4 from '../assets/pics/after-photobooth-4.jpeg';
+import imgAfterPhotobooth5 from '../assets/pics/after-photobooth-5.jpeg';
+import imgBlurPhotobooth from '../assets/pics/blur-result-photobooth.jpeg';
 import img2 from '../assets/pics/blok-m-1.jpeg';
 import img3 from '../assets/pics/blok-m-2.jpeg';
-import img4 from '../assets/pics/after-photobooth-1.jpeg';
-import img5 from '../assets/pics/after-photobooth-2.jpeg';
 import img6 from '../assets/pics/blok-m-food-1.jpeg';
 import img7 from '../assets/pics/blok-m-food-2.jpeg';
-import img8 from '../assets/pics/playtopia-entrance.jpeg';
-import img9 from '../assets/pics/after-photobooth-3.jpeg';
-import img10 from '../assets/pics/playtopia-magang-tanpa-bokem-1.jpeg';
-import img11 from '../assets/pics/playtopia-magang-x-bokem-1.jpeg';
-import img12 from '../assets/pics/selfie-time-1786710330171.jpg.jpeg';
 import img13 from '../assets/pics/blok-m-photobooth.jpeg';
 
 import imgBoardgame1 from '../assets/pics/boardgame-1.jpeg';
@@ -44,6 +43,38 @@ import imgSelfie3 from '../assets/pics/selfie-time-1786710133863.jpg.jpeg';
 import imgSelfie4 from '../assets/pics/selfie-time-1786710564370.jpg.jpeg';
 import imgSelfie5 from '../assets/pics/selfie-time-1786710634178.jpg.jpeg';
 
+import imgPlaytopiaEntrance from '../assets/pics/playtopia-entrance.jpeg';
+import imgPlaytopiaTanpaBokem from '../assets/pics/playtopia-magang-tanpa-bokem-1.jpeg';
+import imgPlaytopiaBokem from '../assets/pics/playtopia-magang-x-bokem-1.jpeg';
+
+import imgFormalWalikota from '../assets/pics/formal-walikota.jpeg';
+import vidMcdJourney1 from '../assets/vids/mcd-journey-1.MOV';
+import vidMcdJourney2 from '../assets/vids/mcd-journey-2.MOV';
+import vidMcdJourney3 from '../assets/vids/mcd-journey-3.MOV';
+import vidMcdJourney4 from '../assets/vids/mcd-journey-4.MOV';
+import vidMcdJourney5 from '../assets/vids/mcd-journey-5.MOV';
+
+import imgMeletDindaJepa from '../assets/pics/melet-dinda-jepa.jpeg';
+import vidPhotoboothSecond from '../assets/vids/photobooth-second.MOV';
+
+import imgWork from '../assets/pics/work.jpeg';
+import vidWork from '../assets/vids/work.MOV';
+
+import imgTumbangJepa1 from '../assets/pics/tumbang-jepa-1.jpeg';
+import imgTumbangJepa2 from '../assets/pics/tumbang-jepa-2.jpeg';
+import imgTumbangJepa3 from '../assets/pics/tumbang-jepa-3.jpeg';
+import vidJepaTumbang1 from '../assets/vids/jepa-tumbang-1.MOV';
+import vidJepaTumbang2 from '../assets/vids/jepa-tumbang-2.MOV';
+import vidJepaTumbang3 from '../assets/vids/jepa-tumbang-3.MOV';
+
+import vidPhotoboothLast1 from '../assets/vids/photobooth-last-1.mp4';
+import vidPhotoboothLast2 from '../assets/vids/photobooth-last-2.mp4';
+import vidPhotoboothLast3 from '../assets/vids/photobooth-last-3.mp4';
+import vidPhotoboothLast4 from '../assets/vids/photobooth-last-4.mp4';
+import vidPhotoboothLast5 from '../assets/vids/photobooth-last-5.mp4';
+
+import imgDiaMilikku from '../assets/pics/dia-milikku.jpg';
+
 import vidBlokM1 from '../assets/vids/blok-m-journey-1.MOV';
 import vidBlokM2 from '../assets/vids/blok-m-journey-2.MOV';
 import vidBlokM3 from '../assets/vids/blok-m-journey-3.MOV';
@@ -63,197 +94,6 @@ import imgEndOfTheStory from '../assets/pics/end-of-the-story.jpg';
 import imgSoreIstri from '../assets/pics/sore-istri-dari-masa-depan.webp';
 
 export const memories = [
-  // ── SEASON 1: The Beginning ──────────────────────────────────────────────
-  {
-    id: 1,
-    title: 'The Beginning of Us',
-    description:
-      'ga ada yg rencanain. ada satu momen kecil yg awalnya ga kerasa penting, tapi dari situ semuanya mulai. ini titik awalnya.',
-    year: '2023',
-    date: '2023-09-05',
-    duration: '1j 12m',
-    genre: ['Core Memory', 'Wholesome'],
-    tags: ['first meeting', 'friendship', 'campus'],
-    people: ['denan', 'grace'],
-    location: 'ITB, Bandung',
-    season: 1,
-    episode: 1,
-    coverImage: img1,
-    backdropImage: img1,
-    backdropVideo: null,
-    media: [
-      { type: 'image', src: img1, caption: 'hari itu.' },
-      { type: 'image', src: img2, caption: 'dari sini semuanya dimulai.' },
-    ],
-    badge: 'Newly Added',
-    featured: false,
-  },
-  {
-    id: 2,
-    title: 'First Hangout',
-    description:
-      'hangout pertama yg beneran keluar bareng, bukan krn ada keperluan. ga ada agenda, ga ada alasan khusus. cuma mau. itu yg bikin ini beda.',
-    year: '2023',
-    date: '2023-10-12',
-    duration: '45m',
-    genre: ['Comedy', 'Unplanned'],
-    tags: ['hangout', 'first time', 'spontaneous'],
-    people: ['denan', 'grace', 'zefanya'],
-    location: 'Bandung',
-    season: 1,
-    episode: 2,
-    coverImage: img3,
-    backdropImage: img3,
-    backdropVideo: null,
-    media: [
-      { type: 'image', src: img3, caption: 'hangout pertama.' },
-      { type: 'image', src: img4, caption: 'yg pertama dari banyak.' },
-    ],
-    badge: 'Season Baru',
-    featured: false,
-  },
-  {
-    id: 3,
-    title: 'Random Tuesday',
-    description:
-      'selasa biasa. ga ada rencana, ga ada yg spesial. entah kenapa ini yg paling diingat.',
-    year: '2023',
-    date: '2023-11-28',
-    duration: '32m',
-    genre: ['Unplanned', 'Random Moments'],
-    tags: ['random', 'everyday', 'no reason'],
-    people: ['denan', 'grace'],
-    location: 'Bandung',
-    season: 1,
-    episode: 3,
-    coverImage: img5,
-    backdropImage: img5,
-    backdropVideo: null,
-    media: [{ type: 'image', src: img5, caption: 'selasa biasa.' }],
-    badge: null,
-    featured: false,
-  },
-
-  // ── SEASON 2: The Good Times ─────────────────────────────────────────────
-  {
-    id: 4,
-    title: 'Late Night Conversations',
-    description:
-      'di suatu titik, obrolannya berhenti jadi basa-basi. susah dijelasin kapan tepatnya. tapi malam itu jelas salah satunya.',
-    year: '2024',
-    date: '2024-02-14',
-    duration: '2j 15m',
-    genre: ['Late Night', 'Core Memory'],
-    tags: ['late night', 'deep talk', 'honest'],
-    people: ['denan', 'grace'],
-    location: 'Somewhere at night',
-    season: 2,
-    episode: 1,
-    coverImage: img6,
-    backdropImage: img6,
-    backdropVideo: null,
-    media: [
-      { type: 'image', src: img6, caption: 'malam yg panjang.' },
-    ],
-    badge: 'Season Baru',
-    featured: false,
-  },
-  {
-    id: 5,
-    title: 'Graduation Day',
-    description:
-      'hari yg udah ditunggu bertahun-tahun. di tengah semua formalitas dan foto-foto, kita sempat punya sudut sendiri dari momen itu.',
-    year: '2024',
-    date: '2024-07-21',
-    duration: '1j 30m',
-    genre: ['Core Memory', 'Wholesome'],
-    tags: ['graduation', 'milestone', 'achievement'],
-    people: ['denan', 'grace', 'zefanya'],
-    location: 'ITB, Bandung',
-    season: 2,
-    episode: 2,
-    coverImage: img7,
-    backdropImage: img7,
-    backdropVideo: null,
-    media: [
-      { type: 'image', src: img7, caption: 'hari kelulusan.' },
-      { type: 'image', src: img8, caption: 'setelah semuanya selesai.' },
-    ],
-    badge: 'Newly Added',
-    featured: false,
-  },
-  {
-    id: 6,
-    title: 'That Trip We Almost Missed',
-    description:
-      'hampir batal. tiga kali. tapi akhirnya jadi juga, dan itu salah satu keputusan terbaik. tiap kali mau balik kagak jadi, inget ini.',
-    year: '2024',
-    date: '2024-08-10',
-    duration: '1j 45m',
-    genre: ['Unplanned'],
-    tags: ['trip', 'road trip', 'adventure', 'almost cancelled'],
-    people: ['denan', 'grace', 'zefanya'],
-    location: 'Luar Kota',
-    season: 2,
-    episode: 3,
-    coverImage: img9,
-    backdropImage: img9,
-    backdropVideo: null,
-    media: [
-      { type: 'image', src: img9, caption: 'perjalanan yg hampir ga jadi.' },
-    ],
-    badge: null,
-    featured: true,
-  },
-  {
-    id: 7,
-    title: 'Chaos at 2AM',
-    description:
-      'mulainya biasa-biasa. entah gimana berakhir jadi cerita yg sampe sekarang masih sering dibawa-bawa. versi masing-masing tentang apa yg terjadi masih beda sampai sekarang.',
-    year: '2024',
-    date: '2024-09-03',
-    duration: '28m',
-    genre: ['Comedy'],
-    tags: ['chaos', 'late night', 'story', '2am'],
-    people: ['denan', 'grace'],
-    location: 'Bandung',
-    season: 2,
-    episode: 4,
-    coverImage: img10,
-    backdropImage: img10,
-    backdropVideo: null,
-    media: [
-      { type: 'image', src: img10, caption: 'kekacauan jam 2 pagi.' },
-      { type: 'image', src: img11, caption: 'sisa-sisa malam itu.' },
-    ],
-    badge: 'Newly Added',
-    featured: false,
-  },
-  {
-    id: 8,
-    title: 'The Food Incident',
-    description:
-      'pesan terlalu banyak, kayak biasa. tapi kali ini ada satu hal yg terjadi di tengah-tengahnya yg ga bakal dilupain. pelayannya juga kayaknya ga bakal lupa.',
-    year: '2024',
-    date: '2024-10-19',
-    duration: '1j',
-    genre: ['Food', 'Comedy'],
-    tags: ['food', 'makan', 'incident', 'embarrassing'],
-    people: ['denan', 'grace', 'zefanya'],
-    location: 'Bandung',
-    season: 2,
-    episode: 5,
-    coverImage: img12,
-    backdropImage: img12,
-    backdropVideo: null,
-    media: [
-      { type: 'image', src: img12, caption: 'sebelum insiden.' },
-      { type: 'image', src: img13, caption: 'setelahnya.' },
-    ],
-    badge: null,
-    featured: false,
-  },
-
   // ── HIDDEN MEMORY (only accessible via easter egg) ───────────────────────
   {
     id: 99,
@@ -282,109 +122,13 @@ export const memories = [
     hidden: true,
   },
 
-  // ── SEASON 3: Almost Goodbye ─────────────────────────────────────────────
-  {
-    id: 9,
-    title: 'Midnight Snack Run',
-    description:
-      'toko yg dituju tutup. tetap ga pulang. akhirnya ngobrol sampai subuh di tempat lain. ga ada fotonya, tapi tetap dibawa kamera satu.',
-    year: '2025',
-    date: '2025-01-07',
-    duration: '52m',
-    genre: ['Unplanned', 'Late Night'],
-    tags: ['midnight', 'snack', 'spontaneous', 'night drive'],
-    people: ['denan', 'grace'],
-    location: 'Bandung, malam',
-    season: 3,
-    episode: 1,
-    coverImage: img2,
-    backdropImage: img2,
-    backdropVideo: null,
-    media: [
-      { type: 'image', src: img2, caption: 'tengah malam.' },
-    ],
-    badge: 'Season Baru',
-    featured: false,
-  },
-  {
-    id: 10,
-    title: 'When We Were Young',
-    description:
-      'foto dari awal, baru dibuka lagi sekarang. kelihatan beda. ngomongnya beda. tapi ada sesuatu yg sama yg belum hilang.',
-    year: '2023',
-    date: '2023-12-15',
-    duration: '1j 20m',
-    genre: ['Nostalgia', 'Core Memory', 'We Were Young'],
-    tags: ['throwback', 'nostalgia', 'early days'],
-    people: ['denan', 'grace'],
-    location: 'Bandung',
-    season: 3,
-    episode: 2,
-    coverImage: img4,
-    backdropImage: img4,
-    backdropVideo: null,
-    media: [
-      { type: 'image', src: img4, caption: 'waktu masih muda.' },
-      { type: 'image', src: img1, caption: 'kembali ke awal.' },
-    ],
-    badge: null,
-    featured: false,
-  },
-  {
-    id: 11,
-    title: 'The Last Semester',
-    description:
-      'semester itu berat. deadline, jarak, keputusan yg ga mudah. tapi tetap hadir satu sama lain, meski lebih kecil caranya dan lebih sedikit waktunya.',
-    year: '2025',
-    date: '2025-05-20',
-    duration: '2j',
-    genre: ['Academic Survival', 'Core Memory'],
-    tags: ['semester', 'stressful', 'showing up', 'last year'],
-    people: ['denan', 'grace', 'zefanya'],
-    location: 'ITB, Bandung',
-    season: 3,
-    episode: 3,
-    coverImage: img8,
-    backdropImage: img8,
-    backdropVideo: null,
-    media: [
-      { type: 'image', src: img8, caption: 'semester terakhir.' },
-    ],
-    badge: 'Newly Added',
-    featured: false,
-  },
-  {
-    id: 12,
-    title: 'Before We Said Goodbye',
-    description:
-      'terakhir kali semua kumpul sebelum jalur masing-masing mulai beda. ga ada yg bilang ini yg terakhir. semua tahu.',
-    year: '2025',
-    date: '2025-08-01',
-    duration: '1j 55m',
-    genre: ['Core Memory', 'Last Days Together'],
-    tags: ['goodbye', 'last time', 'ending', 'bittersweet'],
-    people: ['denan', 'grace', 'zefanya'],
-    location: 'Bandung',
-    season: 3,
-    episode: 4,
-    coverImage: img13,
-    backdropImage: img13,
-    backdropVideo: null,
-    media: [
-      { type: 'image', src: img13, caption: 'sebelum semuanya berubah.' },
-      { type: 'image', src: img12, caption: 'satu foto terakhir.' },
-    ],
-    badge: 'Newly Added',
-    featured: false,
-  },
-
-  // ── SEASON 3 (cont.): Magang Era ─────────────────────────────────────────
+  // ── SEASON 3: Magang Era ─────────────────────────────────────────────────
   {
     id: 13,
     type: 'series',
     title: 'Boardgame Night di Kantor',
     description:
-      'uno flip, love letter, monopoly deal, uno no mercy. kantor jadi arena. ada yg dikeluarkan dari meja krn dianggap curang. ada yg diem-diem kena kartu empat plus-plus. ritual yg ga direncanain, tapi selalu diulang.',
+      'KERJAAN yg bikin kita lebih kenal satu sama lain awalnya. uno flip, love letter, monopoly deal. kantor jadi arena, ada yg curang, ada yg protes, ada yg ketawa ga kira-kira. dari sini kita pertama kali tau satu sama lain sebenernya kayak gimana.',
     year: '2026',
     date: '2026-07-15',
     duration: '2j 30m',
@@ -392,8 +136,8 @@ export const memories = [
     tags: ['boardgame', 'uno', 'monopoly', 'love letter', 'kantor', 'office', 'games', 'magang'],
     people: ['denan', 'zefanya', 'angel', 'dinda', 'grace', 'abi'],
     location: 'Kantor Diskominfotik',
-    season: 3,
-    episode: 5,
+    season: 1,
+    episode: 1,
     coverImage: imgBoardgame1,
     backdropImage: imgBoardgame2,
     backdropVideo: null,
@@ -407,14 +151,14 @@ export const memories = [
       { type: 'youtube', videoId: 'I1NL7aqSXGo', thumbnail: imgBoardgame7, caption: 'sesi 7' },
     ],
     badge: 'Newly Added',
-    featured: false,
+    featured: true,
   },
   {
     id: 14,
     type: 'series',
     title: 'Main di Cafe',
     description:
-      'sebentar doang, katanya. hampir dua jam kemudian baru beranjak. pesanannya hampir dingin krn lupa dimakan.',
+      'pertama kali keluar bareng beneran. \'sebentar doang kok.\' hampir dua jam kemudian baru ada yg niat pulang. pesanannya udah keburu dingin. dari sini mulai kebiasaan ini.',
     year: '2026',
     date: '2026-07-28',
     duration: '1j 45m',
@@ -422,8 +166,8 @@ export const memories = [
     tags: ['cafe', 'hangout', 'magang', 'santai', 'games', 'office'],
     people: ['denan', 'zefanya', 'angel', 'dinda', 'grace', 'abi'],
     location: 'Cafe, Jakarta',
-    season: 3,
-    episode: 6,
+    season: 1,
+    episode: 2,
     coverImage: imgCafe1,
     backdropImage: imgCafe2,
     backdropVideo: null,
@@ -449,8 +193,8 @@ export const memories = [
     tags: ['day 1', 'magang', 'pertama', 'grace', 'awal', 'office'],
     people: ['denan', 'zefanya', 'angel', 'dinda', 'grace', 'abi'],
     location: 'Kantor Diskominfotik',
-    season: 3,
-    episode: 7,
+    season: 1,
+    episode: 3,
     coverImage: 'https://img.youtube.com/vi/tUGCmz-_hM8/maxresdefault.jpg',
     backdropImage: 'https://img.youtube.com/vi/tUGCmz-_hM8/maxresdefault.jpg',
     backdropVideo: null,
@@ -467,7 +211,7 @@ export const memories = [
     type: 'series',
     title: 'Blok M Journey',
     description:
-      'tujuh momen dari satu hari yg sama di blok M. setiap orang punya versinya sendiri tentang bagian mana yg paling diingat.',
+      'perjalanan panjang pertama yg kita lakuin bareng. dari berangkat sampai pulang, satu hari, satu tujuan. setiap orang balik dengan versi cerita yg sedikit beda tentang bagian mana yg paling berkesan.',
     year: '2025',
     date: '2025-01-01',
     duration: '7 episode',
@@ -513,11 +257,11 @@ export const memories = [
     backdropImage: imgSelfie2,
     backdropVideo: null,
     media: [
-      { type: 'image', src: imgSelfie1, caption: 'foto 1' },
-      { type: 'image', src: imgSelfie2, caption: 'foto 2' },
-      { type: 'image', src: imgSelfie3, caption: 'foto 3' },
-      { type: 'image', src: imgSelfie4, caption: 'foto 4' },
-      { type: 'image', src: imgSelfie5, caption: 'foto 5' },
+      { type: 'video', src: vidPhotoboothLast1, thumbnail: imgSelfie1, caption: 'foto 1' },
+      { type: 'video', src: vidPhotoboothLast2, thumbnail: imgSelfie2, caption: 'foto 2' },
+      { type: 'video', src: vidPhotoboothLast3, thumbnail: imgSelfie3, caption: 'foto 3' },
+      { type: 'video', src: vidPhotoboothLast4, thumbnail: imgSelfie4, caption: 'foto 4' },
+      { type: 'video', src: vidPhotoboothLast5, thumbnail: imgSelfie5, caption: 'foto 5' },
     ],
     badge: 'Newly Added',
     featured: false,
@@ -529,7 +273,7 @@ export const memories = [
     type: 'movie',
     title: 'Twenty Five Twenty One',
     description:
-      'nonton bareng. ada yg nangis, ada yg pura-pura ga nangis. berhasil ngerusak mood semua orang dengan cara yg baik.',
+      'tentang dua orang yg ketemu di usia yg beda dan mimpi yg belum tentu sejalan. 22 episode yg ga kerasa, lalu endingnya datang. ada yg nangis. ada yg pura-pura ga nangis. hasilnya sama aja.',
     year: '2022',
     date: '2024-01-01',
     duration: '1j 10m',
@@ -551,7 +295,7 @@ export const memories = [
     type: 'movie',
     title: 'Ancika: Dia yang Bersamaku 1995',
     description:
-      'film lokal yg ternyata bikin beberapa orang di ruangan lebih diem dari biasanya.',
+      'set di 1995. tentang cinta yg datang setelah ada yg pergi, dan harus memutuskan apakah itu cukup. bukan tentang siapa yg menang. ada yg jadi lebih pendiem setelah nonton ini.',
     year: '2023',
     date: '2024-01-01',
     duration: '1j 50m',
@@ -573,7 +317,7 @@ export const memories = [
     type: 'movie',
     title: 'Can This Love Be Translated',
     description:
-      'filmnya sederhana. tapi nonton ini sama mereka bikin lebih kerasa dari yg harusnya.',
+      'tentang cinta yg harus melewati bahasa dulu sebelum bisa diucapkan. ada yg hilang dalam terjemahan, ada yg justru lebih jelas setelah. filmnya sederhana. perasaannya tidak.',
     year: '2023',
     date: '2024-01-01',
     duration: '1j 40m',
@@ -595,7 +339,7 @@ export const memories = [
     type: 'movie',
     title: 'Doctor Strange in the Multiverse of Madness',
     description:
-      'chaos multiverse versi marvel-nya lebih mudah diikuti kalo nonton rame-rame sambil bingung bareng.',
+      'multiverse-nya chaos, karakter-karakternya makin ramai, dan ada yg masih nanya \'ini siapanya siapa?\' sampai di scene terakhir. nonton bareng ternyata bikin lebih bingung sekaligus lebih seru. keduanya ga masalah.',
     year: '2022',
     date: '2024-01-01',
     duration: '2j 6m',
@@ -617,7 +361,7 @@ export const memories = [
     type: 'movie',
     title: '20th Century Girl',
     description:
-      'film korea yg bikin satu ruangan diem di bagian terakhirnya. ga ada yg ngomong apa-apa setelah credits roll.',
+      'set di 1999. tentang cinta pertama yg diusahain sepenuh hati, tapi waktunya ga berpihak. endingnya datang tanpa minta izin. waktu credits roll, ga ada yg langsung ngomong apa-apa.',
     year: '2022',
     date: '2024-01-01',
     duration: '1j 59m',
@@ -639,7 +383,7 @@ export const memories = [
     type: 'movie',
     title: 'As It Was',
     description:
-      'visual yg gitu doang, tapi sampe sekarang masih sering diinget.',
+      'lagu harry styles tentang hal-hal yg udah berubah dan ga bisa balik jadi seperti dulu. \'in this world, it\'s just us.\' ada yg minta diputar ulang setelah selesai. ada yg diem aja tapi minta link-nya.',
     year: '2023',
     date: '2024-01-01',
     duration: '1j 30m',
@@ -661,7 +405,7 @@ export const memories = [
     type: 'movie',
     title: 'Perfect Crown',
     description:
-      'baru tau ada film ini gara-gara salah satu dari mereka yg punya rekomendasi aneh yg ternyata selalu bagus.',
+      'filmnya punya cara sendiri buat bikin penonton ga bisa langsung melupakannya. ga banyak yg tau ini sebelumnya. tapi setelah nonton, langsung ngerti kenapa direkomendasiin.',
     year: '2023',
     date: '2024-01-01',
     duration: '1j 45m',
@@ -683,7 +427,7 @@ export const memories = [
     type: 'movie',
     title: 'End of the Story',
     description:
-      'judulnya agak dramatis. filmnya juga lumayan. yang paling dramatis adalah reaksi orang-orang di ruangan.',
+      'judulnya bukan ancaman. tapi filmnya tetap berhasil bikin beberapa orang ga siap sama bagian terakhirnya. yg paling diingat bukan plotnya, tapi diam setelah layarnya gelap.',
     year: '2023',
     date: '2024-01-01',
     duration: '1j 35m',
@@ -705,7 +449,7 @@ export const memories = [
     type: 'movie',
     title: 'Sore: Istri dari Masa Depan',
     description:
-      'film lokal yg ga banyak orang tahu. ini salah satu alasan kenapa rekomendasinya perlu dipercaya.',
+      'istri dari masa depan datang nemuin suaminya di masa lalu. premisnya aneh, tapi cara filmnya nyampein perasaannya ga aneh sama sekali. lebih berat dari yg kelihatan di awal.',
     year: '2023',
     date: '2024-01-01',
     duration: '1j 55m',
@@ -720,6 +464,182 @@ export const memories = [
     backdropVideo: null,
     media: [{ type: 'video', src: vidSoreIstri, caption: 'sore: istri dari masa depan' }],
     badge: null,
+    featured: false,
+  },
+  {
+    id: 27,
+    type: 'movie',
+    title: 'Dia Milikku Bukan Milikmu',
+    description:
+      'judulnya udah bilang siapa yg menang dan siapa yg harus melepas. filmnya tetap ngajak penonton berharap beda sampai akhir. ga ada yg ingat siapa yg rekomendasiin, tapi semua ingat perasaannya setelah selesai.',
+    year: '2023',
+    date: '2024-01-01',
+    duration: '1j 40m',
+    genre: ['Romance', 'Drama', 'Indonesia'],
+    tags: ['nonton bareng', 'indonesia', 'romance', 'movie night'],
+    people: ['denan', 'zefanya', 'angel', 'dinda', 'grace', 'abi'],
+    location: null,
+    season: null,
+    episode: null,
+    coverImage: imgDiaMilikku,
+    backdropImage: imgDiaMilikku,
+    backdropVideo: null,
+    media: [{ type: 'video', src: vidDia, caption: 'dia milikku bukan milikmu' }],
+    badge: null,
+    featured: false,
+  },
+  {
+    id: 28,
+    type: 'movie',
+    title: 'Work',
+    description:
+      'ini beneran magang ternyata. monitor menyala, semua sibuk, semua punya kerjaan masing-masing. satu momen dan tiba-tiba sadar bahwa ini nyata. tapi tetap ada yg sempet foto dulu sebelum balik ke laptop.',
+    year: '2025',
+    date: '2025-01-01',
+    duration: '1j',
+    genre: ['Random Moments', 'Wholesome'],
+    tags: ['kantor', 'magang', 'hari kerja', 'diskominfotik'],
+    people: ['denan', 'zefanya', 'angel', 'dinda', 'grace', 'abi'],
+    location: 'Diskominfotik Jakarta',
+    season: null,
+    episode: null,
+    coverImage: imgWork,
+    backdropImage: imgWork,
+    backdropVideo: null,
+    media: [{ type: 'video', src: vidWork, caption: 'work' }],
+    badge: null,
+    featured: false,
+  },
+  {
+    id: 29,
+    type: 'series',
+    title: 'Jepa Tumbang',
+    description:
+      'jepa tidur, dunia terus jalan di sekitarnya. dipanggil, disentuh, digangguin habis-habisan. ga ada reaksi. tiga episode terekam lengkap, dan sampai sekarang orangnya masih ga tau udah seberapa parah kita ganggu.',
+    year: '2025',
+    date: '2025-01-01',
+    duration: '3 episode',
+    genre: ['Comedy', 'Chaos'],
+    tags: ['jepa', 'tumbang', 'random', 'konyol'],
+    people: ['denan', 'zefanya', 'angel', 'dinda', 'grace', 'abi'],
+    location: null,
+    season: null,
+    episode: null,
+    coverImage: imgTumbangJepa1,
+    backdropImage: imgTumbangJepa1,
+    backdropVideo: null,
+    media: [
+      { type: 'video', src: vidJepaTumbang1, thumbnail: imgTumbangJepa1, caption: 'episode 1' },
+      { type: 'video', src: vidJepaTumbang2, thumbnail: imgTumbangJepa2, caption: 'episode 2' },
+      { type: 'video', src: vidJepaTumbang3, thumbnail: imgTumbangJepa3, caption: 'episode 3' },
+    ],
+    badge: 'Newly Added',
+    featured: false,
+  },
+  {
+    id: 30,
+    type: 'movie',
+    title: 'Photobooth Second',
+    description:
+      'foto booth kedua, kali ini di kafe juga. udah tau gaya apa yg works, udah tau timer-nya mau ngaret berapa detik. tapi hasilnya tetap sama konyolnya. kayaknya memang begitu caranya.',
+    year: '2025',
+    date: '2025-01-01',
+    duration: '1j',
+    genre: ['Random Moments', 'Comedy'],
+    tags: ['photobooth', 'foto', 'sesi foto'],
+    people: ['denan', 'zefanya', 'angel', 'dinda', 'grace', 'abi'],
+    location: null,
+    season: null,
+    episode: null,
+    coverImage: imgMeletDindaJepa,
+    backdropImage: imgMeletDindaJepa,
+    backdropVideo: null,
+    media: [{ type: 'video', src: vidPhotoboothSecond, caption: 'photobooth second' }],
+    badge: null,
+    featured: false,
+  },
+  {
+    id: 32,
+    type: 'series',
+    title: 'Foto Booth Pertama',
+    description:
+      'yang pertama selalu ada momen bingung harus ngapain dulu. posisinya ga pas, timernya ga ditunggu, hasilnya ga sesuai ekspektasi. tapi justru karena itu, yang pertama selalu yg paling diingat.',
+    year: '2026',
+    date: '2026-07-01',
+    duration: '1j',
+    genre: ['Core Memory', 'Random Moments'],
+    tags: ['photobooth', 'foto', 'pertama', 'memories', 'magang'],
+    people: ['denan', 'zefanya', 'angel', 'dinda', 'grace', 'abi'],
+    location: 'Jakarta',
+    season: null,
+    episode: null,
+    coverImage: img1,
+    backdropImage: imgBlurPhotobooth,
+    backdropVideo: null,
+    media: [
+      { type: 'image', src: img1,               caption: 'foto booth pertama.' },
+      { type: 'image', src: imgAfterPhotobooth1, caption: 'setelah.' },
+      { type: 'image', src: imgAfterPhotobooth2, caption: 'masih setelah.' },
+      { type: 'image', src: imgAfterPhotobooth3, caption: 'dan setelah lagi.' },
+      { type: 'image', src: imgAfterPhotobooth4, caption: 'tetap.' },
+      { type: 'image', src: imgAfterPhotobooth5, caption: 'terakhir.' },
+    ],
+    badge: 'Core Memory',
+    featured: false,
+  },
+
+  {
+    id: 31,
+    type: 'series',
+    title: 'McD Journey',
+    description:
+      'lima video dari satu perjalanan ke mcd. entah gimana ini bisa jadi lima episode.',
+    year: '2025',
+    date: '2025-01-01',
+    duration: '5 episode',
+    genre: ['Food', 'Random Moments'],
+    tags: ['mcd', 'makan', 'perjalanan', 'random'],
+    people: ['denan', 'zefanya', 'angel', 'dinda', 'grace', 'abi'],
+    location: null,
+    season: null,
+    episode: null,
+    coverImage: imgFormalWalikota,
+    backdropImage: imgFormalWalikota,
+    backdropVideo: null,
+    media: [
+      { type: 'video', src: vidMcdJourney1, thumbnail: imgFormalWalikota, caption: 'episode 1' },
+      { type: 'video', src: vidMcdJourney2, caption: 'episode 2' },
+      { type: 'video', src: vidMcdJourney3, caption: 'episode 3' },
+      { type: 'video', src: vidMcdJourney4, caption: 'episode 4' },
+      { type: 'video', src: vidMcdJourney5, caption: 'episode 5' },
+    ],
+    badge: 'Newly Added',
+    featured: false,
+  },
+  {
+    id: 33,
+    type: 'series',
+    title: 'Playtopia',
+    description:
+      'tiga video dari satu hari di playtopia. ada yg masuk duluan, ada yg langsung chaos, ada yg diam-diam kompetitif.',
+    year: '2026',
+    date: '2026-01-01',
+    duration: '3 episode',
+    genre: ['Comedy', 'Random Moments'],
+    tags: ['playtopia', 'games', 'magang', 'jakarta'],
+    people: ['denan', 'zefanya', 'angel', 'dinda', 'grace', 'abi'],
+    location: 'Playtopia, Jakarta',
+    season: null,
+    episode: null,
+    coverImage: imgPlaytopiaEntrance,
+    backdropImage: imgPlaytopiaEntrance,
+    backdropVideo: null,
+    media: [
+      { type: 'gdrive', fileId: '1NT10vDR6jF8Zq-M9iN8YkjOxhQGE2v5V', thumbnail: imgPlaytopiaEntrance,   caption: 'masuk' },
+      { type: 'gdrive', fileId: '1M61CZxarcvTv2KrP3dKCSJPZOj_hagnm', thumbnail: imgPlaytopiaTanpaBokem, caption: 'magang tanpa bokem' },
+      { type: 'gdrive', fileId: '1TNnxKIKQxvVcLIDeDaNePxCSMXFUn-5u', thumbnail: imgPlaytopiaBokem,      caption: 'magang x bokem' },
+    ],
+    badge: 'Newly Added',
     featured: false,
   },
 ];

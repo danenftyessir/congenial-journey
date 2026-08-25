@@ -11,7 +11,7 @@ const CardImage = ({ src, idx, item }) => {
     <>
       <div
         ref={cardRef}
-        className="relative w-[140px] lg:w-[170px] h-[210px] lg:h-[255px] flex-shrink-0 rounded overflow-hidden cursor-pointer"
+        className="relative w-[110px] sm:w-[130px] md:w-[150px] lg:w-[170px] h-[165px] sm:h-[195px] md:h-[225px] lg:h-[255px] flex-shrink-0 rounded overflow-hidden cursor-pointer"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={() => navigate(`/memory/${item?.id}`)}

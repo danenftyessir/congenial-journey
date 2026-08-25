@@ -33,35 +33,35 @@ const ProfileSelect = () => {
 
   return (
     <div className="min-h-screen bg-[#141414] flex flex-col">
-      {/* Header — logo centered */}
-      <header className="flex justify-center pt-8 pb-4">
-        <img src={netflixLogo} alt="logo" className="w-[120px]" />
+      {/* Header */}
+      <header className="flex justify-center pt-6 sm:pt-8 pb-4">
+        <img src={netflixLogo} alt="logo" className="w-[90px] sm:w-[110px]" />
       </header>
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col items-center justify-center px-5">
-        <h1 className="text-white text-4xl lg:text-5xl font-semibold mb-10 text-center">
+      <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-8 py-6">
+        <h1 className="text-white text-2xl sm:text-3xl lg:text-5xl font-semibold mb-8 sm:mb-10 text-center">
           Siapa yang menonton?
         </h1>
 
-        <div className="grid grid-cols-3 lg:grid-cols-6 gap-5 lg:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 lg:gap-8">
           {profiles.map((profile) => (
             <button
               key={profile.id}
               onClick={() => handleSelect(profile)}
-              className={`group flex flex-col items-center gap-3 transition-all duration-300 ${
+              className={`group flex flex-col items-center gap-2 sm:gap-3 transition-all duration-300 ${
                 selecting === profile.id ? 'scale-95 opacity-60' : 'hover:scale-105'
               }`}
             >
-              {/* Avatar — Netflix face icon style */}
+              {/* Avatar */}
               <div
-                className="w-24 h-24 lg:w-32 lg:h-32 rounded-md flex items-center justify-center border-[3px] border-transparent group-hover:border-white transition-all duration-200 p-4 lg:p-5"
+                className="w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-md flex items-center justify-center border-[3px] border-transparent group-hover:border-white transition-all duration-200 p-3 sm:p-4 lg:p-5"
                 style={{ backgroundColor: profile.color }}
               >
                 <NetflixFaceIcon />
               </div>
 
-              <span className="text-gray-400 group-hover:text-white text-sm font-medium transition-colors duration-200">
+              <span className="text-gray-400 group-hover:text-white text-xs sm:text-sm font-medium transition-colors duration-200 text-center leading-tight">
                 {profile.name}
               </span>
             </button>
@@ -69,9 +69,9 @@ const ProfileSelect = () => {
         </div>
       </main>
 
-      {/* Footer — Kelola Profil button */}
-      <footer className="flex justify-center pb-12">
-        <button className="border border-gray-500 text-gray-400 hover:text-white hover:border-white px-8 py-2 text-sm tracking-widest transition-colors duration-200">
+      {/* Footer */}
+      <footer className="flex justify-center pb-10 sm:pb-12">
+        <button className="border border-gray-500 text-gray-400 hover:text-white hover:border-white px-6 sm:px-8 py-2 text-xs sm:text-sm tracking-widest transition-colors duration-200">
           Kelola Profil
         </button>
       </footer>

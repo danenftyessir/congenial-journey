@@ -32,7 +32,6 @@ const AchievementCenter = ({ onClose }) => {
   const unlockedCount = computed.filter((a) => a.unlocked).length;
   const overallPct = Math.round((unlockedCount / computed.length) * 100);
 
-  // Auto-mark all currently unlocked achievements as seen when panel opens
   useEffect(() => {
     const unlockedIds = computed.filter((a) => a.unlocked).map((a) => a.id);
     if (unlockedIds.length > 0) markAchievementsSeen(unlockedIds);
@@ -44,13 +43,17 @@ const AchievementCenter = ({ onClose }) => {
       if (ref.current && !ref.current.contains(e.target)) onClose();
     };
     document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
+    document.addEventListener('touchstart', handler);
+    return () => {
+      document.removeEventListener('mousedown', handler);
+      document.removeEventListener('touchstart', handler);
+    };
   }, [onClose]);
 
   return (
     <div
       ref={ref}
-      className="absolute right-0 top-full mt-2 w-[340px] bg-[#1c1c1c] border border-white/10 rounded-xl shadow-2xl overflow-hidden z-50"
+      className="absolute right-0 top-full mt-2 w-[calc(100vw-2rem)] sm:w-[340px] max-w-[340px] bg-[#1c1c1c] border border-white/10 rounded-xl shadow-2xl overflow-hidden z-50"
     >
       {/* Header */}
       <div className="px-4 pt-3 pb-3 border-b border-white/10">
@@ -60,7 +63,7 @@ const AchievementCenter = ({ onClose }) => {
             <h3 className="text-white font-semibold text-sm">Achievements</h3>
             <span className="text-gray-500 text-xs">{unlockedCount}/{computed.length}</span>
           </div>
-          <button onClick={onClose} className="text-gray-600 hover:text-white transition-colors">
+          <button onClick={onClose} className="text-gray-600 hover:text-white transition-colors p-0.5">
             <X size={14} />
           </button>
         </div>
@@ -79,7 +82,7 @@ const AchievementCenter = ({ onClose }) => {
       </div>
 
       {/* Achievement list */}
-      <div className="max-h-[440px] overflow-y-auto">
+      <div className="max-h-[50vh] sm:max-h-[440px] overflow-y-auto overscroll-contain">
         {computed.map((a) => {
           const style = rarityConfig[a.rarity] || rarityConfig.common;
           const pct = Math.min(100, a.target > 0 ? Math.round((a.current / a.target) * 100) : 0);
@@ -97,7 +100,6 @@ const AchievementCenter = ({ onClose }) => {
               </span>
 
               <div className="flex-1 min-w-0">
-                {/* Title row */}
                 <div className="flex items-center gap-1.5 mb-0.5 flex-wrap">
                   <p className={`text-xs font-semibold leading-tight ${a.unlocked ? 'text-white' : 'text-gray-400'}`}>
                     {a.title}
@@ -114,11 +116,7 @@ const AchievementCenter = ({ onClose }) => {
                     <span className="ml-auto text-[10px] font-bold text-amber-400 flex-shrink-0">✓ UNLOCKED</span>
                   )}
                 </div>
-
-                {/* Description */}
                 <p className="text-gray-500 text-[11px] leading-relaxed mb-1.5">{a.description}</p>
-
-                {/* Progress bar */}
                 <div className="flex items-center gap-2">
                   <div className="flex-1 h-1 bg-white/10 rounded-full overflow-hidden">
                     <div
