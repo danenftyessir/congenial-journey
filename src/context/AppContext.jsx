@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useRef } from 'react';
 
 const AppContext = createContext(null);
 
@@ -25,48 +25,47 @@ const save = (key, value) => {
   }
 };
 
+// All per-profile keys are namespaced: nfm_<key>_<profileId>
+const pk = (profileId, key) => `nfm_${key}_${profileId || 'guest'}`;
+
 export const AppProvider = ({ children }) => {
   const [currentProfile, setCurrentProfileState] = useState(() =>
     load('nfm_profile', null)
   );
 
-  const [myList, setMyList] = useState(() => load('nfm_mylist', []));
+  const initId = currentProfile?.id || 'guest';
+  // Ref keeps the current profile ID in sync for use inside setState callbacks
+  const profileIdRef = useRef(initId);
 
-  // { [memoryId]: percentage 0-100 }
-  const [watchProgress, setWatchProgress] = useState(() =>
-    load('nfm_progress', {})
-  );
-
-  // Array of memory IDs, most-recently-viewed first (max 20, for Continue Watching UI)
-  const [recentlyWatched, setRecentlyWatched] = useState(() =>
-    load('nfm_recent', [])
-  );
-
-  // Unbounded set of all visited memory IDs — used for achievement tracking
-  const [visitedMemories, setVisitedMemories] = useState(() =>
-    load('nfm_visited', [])
-  );
-
-  // { [memoryId]: reactionId ('heart' | 'miss' | 'laugh' | 'skull' | 'star') }
-  const [reactions, setReactionsState] = useState(() =>
-    load('nfm_reactions', {})
-  );
-
-  // Array of achievement IDs the user has seen while unlocked (for badge count)
+  const [myList, setMyList] = useState(() => load(pk(initId, 'mylist'), []));
+  const [watchProgress, setWatchProgress] = useState(() => load(pk(initId, 'progress'), {}));
+  const [recentlyWatched, setRecentlyWatched] = useState(() => load(pk(initId, 'recent'), []));
+  const [visitedMemories, setVisitedMemories] = useState(() => load(pk(initId, 'visited'), []));
+  const [reactions, setReactionsState] = useState(() => load(pk(initId, 'reactions'), {}));
   const [seenAchievements, setSeenAchievements] = useState(() =>
-    load('nfm_seen_achievements', [])
+    load(pk(initId, 'seen_achievements'), [])
   );
 
-  // ── Profile ──────────────────────────────────────────────────────────────
+  // ── Profile ───────────────────────────────────────────────────────────────
 
   const setCurrentProfile = (profile) => {
+    const pid = profile?.id || 'guest';
+    profileIdRef.current = pid;
     setCurrentProfileState(profile);
     save('nfm_profile', profile);
+    // Load this profile's own state from localStorage
+    setMyList(load(pk(pid, 'mylist'), []));
+    setWatchProgress(load(pk(pid, 'progress'), {}));
+    setRecentlyWatched(load(pk(pid, 'recent'), []));
+    setVisitedMemories(load(pk(pid, 'visited'), []));
+    setReactionsState(load(pk(pid, 'reactions'), {}));
+    setSeenAchievements(load(pk(pid, 'seen_achievements'), []));
   };
 
   const clearProfile = () => {
     setCurrentProfileState(null);
     save('nfm_profile', null);
+    profileIdRef.current = 'guest';
   };
 
   // ── My List ───────────────────────────────────────────────────────────────
@@ -76,7 +75,7 @@ export const AppProvider = ({ children }) => {
       const next = prev.includes(memoryId)
         ? prev.filter((id) => id !== memoryId)
         : [...prev, memoryId];
-      save('nfm_mylist', next);
+      save(pk(profileIdRef.current, 'mylist'), next);
       return next;
     });
   };
@@ -86,7 +85,7 @@ export const AppProvider = ({ children }) => {
   const updateProgress = (memoryId, pct) => {
     setWatchProgress((prev) => {
       const next = { ...prev, [memoryId]: Math.min(100, Math.max(0, pct)) };
-      save('nfm_progress', next);
+      save(pk(profileIdRef.current, 'progress'), next);
       return next;
     });
   };
@@ -94,18 +93,16 @@ export const AppProvider = ({ children }) => {
   // ── Recently Watched + Visited ────────────────────────────────────────────
 
   const addToRecent = (memoryId) => {
-    // Capped list for Continue Watching UI
     setRecentlyWatched((prev) => {
       const filtered = prev.filter((id) => id !== memoryId);
       const next = [memoryId, ...filtered].slice(0, 20);
-      save('nfm_recent', next);
+      save(pk(profileIdRef.current, 'recent'), next);
       return next;
     });
-    // Unbounded set for achievement tracking
     setVisitedMemories((prev) => {
       if (prev.includes(memoryId)) return prev;
       const next = [...prev, memoryId];
-      save('nfm_visited', next);
+      save(pk(profileIdRef.current, 'visited'), next);
       return next;
     });
   };
@@ -121,7 +118,7 @@ export const AppProvider = ({ children }) => {
       } else {
         next = { ...prev, [memoryId]: reactionId };
       }
-      save('nfm_reactions', next);
+      save(pk(profileIdRef.current, 'reactions'), next);
       return next;
     });
   };
@@ -133,7 +130,7 @@ export const AppProvider = ({ children }) => {
       const newIds = ids.filter((id) => !prev.includes(id));
       if (newIds.length === 0) return prev;
       const next = [...prev, ...newIds];
-      save('nfm_seen_achievements', next);
+      save(pk(profileIdRef.current, 'seen_achievements'), next);
       return next;
     });
   };

@@ -47,6 +47,11 @@ import imgPlaytopiaEntrance from '../assets/pics/playtopia-entrance.jpeg';
 import imgPlaytopiaTanpaBokem from '../assets/pics/playtopia-magang-tanpa-bokem-1.jpeg';
 import imgPlaytopiaBokem from '../assets/pics/playtopia-magang-x-bokem-1.jpeg';
 
+import imgArthaGading from '../assets/pics/artha-gading-mall.jpeg';
+import imgMcd3 from '../assets/pics/mcd-3.jpeg';
+import imgMcd4 from '../assets/pics/mcd-4.jpeg';
+import imgMcd5 from '../assets/pics/mcd-5.jpeg';
+
 import imgFormalWalikota from '../assets/pics/formal-walikota.jpeg';
 import vidMcdJourney1 from '../assets/vids/mcd-journey-1.MOV';
 import vidMcdJourney2 from '../assets/vids/mcd-journey-2.MOV';
@@ -151,7 +156,7 @@ export const memories = [
       { type: 'youtube', videoId: 'I1NL7aqSXGo', thumbnail: imgBoardgame7, caption: 'sesi 7' },
     ],
     badge: 'Newly Added',
-    featured: true,
+    featured: false,
   },
   {
     id: 14,
@@ -508,7 +513,7 @@ export const memories = [
     backdropVideo: null,
     media: [{ type: 'video', src: vidWork, caption: 'work' }],
     badge: null,
-    featured: false,
+    featured: true,
   },
   {
     id: 29,
@@ -608,10 +613,10 @@ export const memories = [
     backdropVideo: null,
     media: [
       { type: 'video', src: vidMcdJourney1, thumbnail: imgFormalWalikota, caption: 'episode 1' },
-      { type: 'video', src: vidMcdJourney2, caption: 'episode 2' },
-      { type: 'video', src: vidMcdJourney3, caption: 'episode 3' },
-      { type: 'video', src: vidMcdJourney4, caption: 'episode 4' },
-      { type: 'video', src: vidMcdJourney5, caption: 'episode 5' },
+      { type: 'video', src: vidMcdJourney2, thumbnail: imgArthaGading,   caption: 'episode 2' },
+      { type: 'video', src: vidMcdJourney3, thumbnail: imgMcd3,          caption: 'episode 3' },
+      { type: 'video', src: vidMcdJourney4, thumbnail: imgMcd4,          caption: 'episode 4' },
+      { type: 'video', src: vidMcdJourney5, thumbnail: imgMcd5,          caption: 'episode 5' },
     ],
     badge: 'Newly Added',
     featured: false,

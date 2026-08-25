@@ -5,6 +5,7 @@ import { useApp } from '../context/AppContext';
 
 const MediaViewer = ({ memory, onClose, startIndex = 0 }) => {
   const [current, setCurrent] = useState(startIndex);
+  const [playing, setPlaying] = useState(true);
   const { updateProgress, addToRecent } = useApp();
   const media = memory.media || [];
   const item = media[current];
@@ -32,8 +33,14 @@ const MediaViewer = ({ memory, onClose, startIndex = 0 }) => {
     return () => window.removeEventListener('keydown', onKey);
   }, [current]);
 
-  const goPrev = () => setCurrent((i) => Math.max(0, i - 1));
-  const goNext = () => setCurrent((i) => Math.min(media.length - 1, i + 1));
+  const goPrev = () => { setCurrent((i) => Math.max(0, i - 1)); setPlaying(true); };
+  const goNext = () => { setCurrent((i) => Math.min(media.length - 1, i + 1)); setPlaying(true); };
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) { videoRef.current.play(); setPlaying(true); }
+    else { videoRef.current.pause(); setPlaying(false); }
+  };
 
   const onTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
@@ -84,16 +91,28 @@ const MediaViewer = ({ memory, onClose, startIndex = 0 }) => {
           />
         )}
         {item.type === 'video' && (
-          <video
-            ref={videoRef}
-            key={item.src}
-            src={item.src}
-            controls
-            autoPlay
-            playsInline
-            className="max-w-full max-h-full w-full"
-            style={{ maxHeight: 'calc(100vh - 140px)' }}
-          />
+          <div className="relative flex items-center justify-center max-w-full max-h-full">
+            <video
+              ref={videoRef}
+              key={item.src}
+              src={item.src}
+              autoPlay
+              playsInline
+              className="max-w-full max-h-full w-full cursor-pointer"
+              style={{ maxHeight: 'calc(100vh - 140px)' }}
+              onClick={togglePlay}
+              onEnded={() => setPlaying(false)}
+            />
+            {!playing && (
+              <div
+                className="absolute inset-0 flex items-center justify-center pointer-events-none"
+              >
+                <div className="bg-black/50 rounded-full p-4">
+                  <Play size={28} className="text-white fill-white" />
+                </div>
+              </div>
+            )}
+          </div>
         )}
         {item.type === 'youtube' && (
           <div className="w-full max-w-4xl px-3 sm:px-4" style={{ aspectRatio: '16/9' }}>

@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import HeroBanner from '../components/HeroBanner';
 import MemoryRow from '../components/MemoryRow';
 import Footer from '../components/Footer';
-import { publicMemories as memories, top10 } from '../data/memories';
+import { publicMemories as memories } from '../data/memories';
 import { useApp } from '../context/AppContext';
 
 const Home = () => {
@@ -18,51 +18,55 @@ const Home = () => {
   const profileId = currentProfile?.id || '';
   const profileName = currentProfile?.name || 'You';
 
-  // Continue watching: memories with partial progress
-  const continueItems = memories
+  // Split: film/drama "nonton bareng" vs. actual memories
+  const nontonBareng = memories.filter((m) => m.tags.includes('nonton bareng'));
+  const realMemories = memories.filter((m) => !m.tags.includes('nonton bareng'));
+
+  // Continue watching: real memories with partial progress
+  const continueItems = realMemories
     .filter((m) => {
       const p = watchProgress[m.id];
       return p != null && p > 0 && p < 100;
     })
     .map((m) => ({ ...m, progress: watchProgress[m.id] }));
 
-  // My list items
+  // My list items (keep all — user may have saved a film)
   const myListItems = memories.filter((m) => myList.includes(m.id));
 
-  // Because you were there
-  const becauseYou = memories.filter((m) => m.people.includes(profileId));
+  // Because you were there — real memories only
+  const becauseYou = realMemories.filter((m) => m.people.includes(profileId));
 
-  // Newly added
-  const newlyAdded = memories.filter((m) => m.badge === 'Newly Added');
+  // Newly added — real memories only
+  const newlyAdded = realMemories.filter((m) => m.badge === 'Newly Added');
 
-  // Recently watched (as a row)
+  // Recently watched (as a row) — real memories only
   const recentItems = recentlyWatched
-    .map((id) => memories.find((m) => m.id === id))
+    .map((id) => realMemories.find((m) => m.id === id))
     .filter(Boolean);
 
-  // "You may have forgotten" — oldest memories not in recentlyWatched
-  const forgotten = memories
+  // "You may have forgotten" — oldest real memories not in recentlyWatched
+  const forgotten = realMemories
     .filter((m) => !recentlyWatched.includes(m.id))
     .sort((a, b) => a.id - b.id)
     .slice(0, 8);
 
-  // Trending: sorted by watchProgress descending (most viewed % across all users)
-  const trending = [...memories]
+  // Trending: sorted by watchProgress descending — real memories only
+  const trending = [...realMemories]
     .sort((a, b) => (watchProgress[b.id] || 0) - (watchProgress[a.id] || 0))
     .filter((m) => (watchProgress[m.id] || 0) > 0)
     .slice(0, 10);
 
-  // Most rewatched: memories with progress >= 90
-  const mostRewatched = memories
+  // Most rewatched: real memories with progress >= 90
+  const mostRewatched = realMemories
     .filter((m) => (watchProgress[m.id] || 0) >= 90)
     .slice(0, 8);
 
-  // "Because you liked..." — based on reacted memories
+  // "Because you liked..." — based on reacted real memories
   const reactedIds = Object.keys(reactions).map(Number).filter((id) => reactions[id]);
-  const reactedMemories = memories.filter((m) => reactedIds.includes(m.id));
+  const reactedMemories = realMemories.filter((m) => reactedIds.includes(m.id));
   const likedGenres = [...new Set(reactedMemories.flatMap((m) => m.genre))];
   const likedPeople = [...new Set(reactedMemories.flatMap((m) => m.people))];
-  const becauseLiked = memories
+  const becauseLiked = realMemories
     .filter(
       (m) =>
         !reactedIds.includes(m.id) &&
@@ -70,6 +74,13 @@ const Home = () => {
           m.people.some((p) => likedPeople.includes(p)))
     )
     .slice(0, 8);
+
+  // Top 10 from real memories only
+  const realTop10 = realMemories
+    .slice()
+    .sort((a, b) => b.id - a.id)
+    .slice(0, 10)
+    .map((m, i) => ({ ...m, rank: i + 1 }));
 
   return (
     <main className="bg-[#141414] min-h-screen">
@@ -97,7 +108,7 @@ const Home = () => {
 
         <MemoryRow
           title="Top 10 Kenangan Hari Ini"
-          items={top10}
+          items={realTop10}
           variant="top10"
         />
 
@@ -131,7 +142,14 @@ const Home = () => {
           />
         )}
 
-        <MemoryRow title="Jelajahi Semua Kenangan" items={memories} />
+        <MemoryRow title="Jelajahi Semua Kenangan" items={realMemories} />
+
+        {nontonBareng.length > 0 && (
+          <MemoryRow
+            title="Film & Drakor yang Pernah Kita Tonton Bareng"
+            items={nontonBareng}
+          />
+        )}
 
       </div>
 

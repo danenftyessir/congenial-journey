@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { FaPlay } from 'react-icons/fa6';
-import { Plus, Check, ChevronDown, VolumeX } from 'lucide-react';
+import { Plus, Check, ChevronDown } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { REACTIONS } from './ReactionPicker';
 
@@ -47,12 +47,6 @@ const HoverPopup = ({ item, pos, onMouseEnter, onMouseLeave }) => {
           alt={item.title || 'memory'}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <button
-          className="absolute top-2 right-2 w-7 h-7 rounded-full border border-white/60 bg-black/50 flex items-center justify-center"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <VolumeX size={13} className="text-white" />
-        </button>
         {/* Reaction badge */}
         {reaction && (
           <div className="absolute bottom-2 left-2 text-xl leading-none" title={reaction.label}>

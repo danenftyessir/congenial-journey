@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Trophy, ChevronDown, Search, User, LogOut, BookMarked, Dice5, Menu, X } from 'lucide-react';
+import { Trophy, ChevronDown, Search, User, BookMarked, Dice5, Menu, X } from 'lucide-react';
 import netflixLogo from '../assets/Netflix_Logomark.png';
 import { useApp } from '../context/AppContext';
 import { useEasterEgg } from '../context/EasterEggContext';
@@ -15,7 +15,6 @@ const Navbar = () => {
   const location = useLocation();
   const {
     currentProfile,
-    clearProfile,
     watchProgress,
     visitedMemories,
     myList,
@@ -80,11 +79,6 @@ const Navbar = () => {
   ];
 
   const isActive = (path) => location.pathname === path;
-
-  const handleLogout = () => {
-    clearProfile();
-    navigate('/profile');
-  };
 
   const unseenCount = useMemo(() => {
     const eggs = (() => {
@@ -245,13 +239,6 @@ const Navbar = () => {
                       <User size={15} />
                       Ganti Profil
                     </button>
-                    <button
-                      onClick={handleLogout}
-                      className="flex items-center gap-2.5 px-4 py-2 text-sm text-gray-400 hover:text-[#e50914] hover:bg-white/5 transition-colors text-left w-full"
-                    >
-                      <LogOut size={15} />
-                      Keluar
-                    </button>
                   </div>
                 </div>
               )}
@@ -316,13 +303,6 @@ const Navbar = () => {
             >
               <User size={16} />
               Ganti Profil
-            </button>
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-2 py-3 text-sm text-[#e50914]"
-            >
-              <LogOut size={16} />
-              Keluar
             </button>
           </div>
         </div>
