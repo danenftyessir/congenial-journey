@@ -118,11 +118,13 @@ const EasterEggModal = () => {
                 </p>
 
                 {/* Quotes */}
-                <div className="border-l-2 border-[#e50914]/30 pl-3 mb-6 space-y-2">
-                  {hiddenMemory.quotes.map((q, i) => (
-                    <p key={i} className="text-gray-500 text-sm italic">{q}</p>
-                  ))}
-                </div>
+                {hiddenMemory.quotes?.length > 0 && (
+                  <div className="border-l-2 border-[#e50914]/30 pl-3 mb-6 space-y-2">
+                    {hiddenMemory.quotes.map((q, i) => (
+                      <p key={i} className="text-gray-500 text-sm italic">{q}</p>
+                    ))}
+                  </div>
+                )}
 
                 {/* Actions */}
                 <div className="flex gap-3">

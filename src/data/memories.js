@@ -122,6 +122,8 @@ export const memories = [
       { type: 'image', src: img6, caption: 'momen yg ga sempat terdokumentasi.' },
       { type: 'image', src: img13, caption: 'sebelum semuanya berubah.' },
     ],
+    quotes: [],
+    trivia: [],
     badge: 'Tersembunyi',
     featured: false,
     hidden: true,
