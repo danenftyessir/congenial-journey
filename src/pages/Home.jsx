@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import HeroBanner from '../components/HeroBanner';
 import MemoryRow from '../components/MemoryRow';
@@ -8,13 +8,6 @@ import { useApp } from '../context/AppContext';
 
 const Home = () => {
   const { currentProfile, myList, watchProgress, recentlyWatched, reactions } = useApp();
-  const [showAre, setShowAre] = useState(false);
-
-  // "Are you still reminiscing?" after 7+ memories touched
-  useEffect(() => {
-    if (recentlyWatched.length >= 7) setShowAre(true);
-  }, [recentlyWatched]);
-
   const profileId = currentProfile?.id || '';
   const profileName = currentProfile?.name || 'You';
 
@@ -152,26 +145,6 @@ const Home = () => {
         )}
 
       </div>
-
-      {/* "Are you still reminiscing?" */}
-      {showAre && (
-        <div className="fixed inset-0 z-[500] bg-black/80 flex items-center justify-center">
-          <div className="bg-[#181818] border border-white/10 rounded-xl p-8 max-w-sm mx-4 text-center">
-            <p className="text-white text-xl font-bold mb-2">
-              Masih reminiscing?
-            </p>
-            <p className="text-gray-400 text-sm mb-6">
-              Kamu sudah membuka {recentlyWatched.length} kenangan. Enjoy the nostalgia.
-            </p>
-            <button
-              onClick={() => setShowAre(false)}
-              className="bg-white text-black font-bold px-8 py-2.5 rounded hover:bg-gray-200 transition-colors"
-            >
-              Jelas
-            </button>
-          </div>
-        </div>
-      )}
 
       <Footer />
     </main>
