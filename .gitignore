@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# Original video files — too large for git, keep local only
+src/assets/vids/*.MOV
+src/assets/vids/*.mov
