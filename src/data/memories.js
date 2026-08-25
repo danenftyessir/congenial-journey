@@ -53,24 +53,24 @@ import imgMcd4 from '../assets/pics/mcd-4.jpeg';
 import imgMcd5 from '../assets/pics/mcd-5.jpeg';
 
 import imgFormalWalikota from '../assets/pics/formal-walikota.jpeg';
-import vidMcdJourney1 from '../assets/vids/mcd-journey-1.MOV';
-import vidMcdJourney2 from '../assets/vids/mcd-journey-2.MOV';
-import vidMcdJourney3 from '../assets/vids/mcd-journey-3.MOV';
-import vidMcdJourney4 from '../assets/vids/mcd-journey-4.MOV';
-import vidMcdJourney5 from '../assets/vids/mcd-journey-5.MOV';
+import vidMcdJourney1 from '../assets/vids/mcd-journey-1.mp4';
+import vidMcdJourney2 from '../assets/vids/mcd-journey-2.mp4';
+import vidMcdJourney3 from '../assets/vids/mcd-journey-3.mp4';
+import vidMcdJourney4 from '../assets/vids/mcd-journey-4.mp4';
+import vidMcdJourney5 from '../assets/vids/mcd-journey-5.mp4';
 
 import imgMeletDindaJepa from '../assets/pics/melet-dinda-jepa.jpeg';
-import vidPhotoboothSecond from '../assets/vids/photobooth-second.MOV';
+import vidPhotoboothSecond from '../assets/vids/photobooth-second.mp4';
 
 import imgWork from '../assets/pics/work.jpeg';
-import vidWork from '../assets/vids/work.MOV';
+import vidWork from '../assets/vids/work.mp4';
 
 import imgTumbangJepa1 from '../assets/pics/tumbang-jepa-1.jpeg';
 import imgTumbangJepa2 from '../assets/pics/tumbang-jepa-2.jpeg';
 import imgTumbangJepa3 from '../assets/pics/tumbang-jepa-3.jpeg';
-import vidJepaTumbang1 from '../assets/vids/jepa-tumbang-1.MOV';
-import vidJepaTumbang2 from '../assets/vids/jepa-tumbang-2.MOV';
-import vidJepaTumbang3 from '../assets/vids/jepa-tumbang-3.MOV';
+import vidJepaTumbang1 from '../assets/vids/jepa-tumbang-1.mp4';
+import vidJepaTumbang2 from '../assets/vids/jepa-tumbang-2.mp4';
+import vidJepaTumbang3 from '../assets/vids/jepa-tumbang-3.mp4';
 
 import vidPhotoboothLast1 from '../assets/vids/photobooth-last-1.mp4';
 import vidPhotoboothLast2 from '../assets/vids/photobooth-last-2.mp4';
@@ -80,13 +80,13 @@ import vidPhotoboothLast5 from '../assets/vids/photobooth-last-5.mp4';
 
 import imgDiaMilikku from '../assets/pics/dia-milikku.jpg';
 
-import vidBlokM1 from '../assets/vids/blok-m-journey-1.MOV';
-import vidBlokM2 from '../assets/vids/blok-m-journey-2.MOV';
-import vidBlokM3 from '../assets/vids/blok-m-journey-3.MOV';
-import vidBlokM4 from '../assets/vids/blok-m-journey-4.MOV';
-import vidBlokM5 from '../assets/vids/blok-m-journey-5.MOV';
-import vidBlokM6 from '../assets/vids/blok-m-journey-6.MOV';
-import vidBlokM7 from '../assets/vids/blok-m-journey-7.MOV';
+import vidBlokM1 from '../assets/vids/blok-m-journey-1.mp4';
+import vidBlokM2 from '../assets/vids/blok-m-journey-2.mp4';
+import vidBlokM3 from '../assets/vids/blok-m-journey-3.mp4';
+import vidBlokM4 from '../assets/vids/blok-m-journey-4.mp4';
+import vidBlokM5 from '../assets/vids/blok-m-journey-5.mp4';
+import vidBlokM6 from '../assets/vids/blok-m-journey-6.mp4';
+import vidBlokM7 from '../assets/vids/blok-m-journey-7.mp4';
 
 import imgTwentyFiveTwentyOne from '../assets/pics/Twenty-Five_Twenty-One.jpg';
 import imgAncika from '../assets/pics/ancika-dia-yang-bersamaku-1995.webp';
